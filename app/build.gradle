@@ -9,6 +9,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'com.diffplug.spotless' version '8.0.0'
 }
 
 repositories {
@@ -41,4 +42,13 @@ java {
 application {
     // Define the main class for the application.
     mainClass = 'io.github.project516.NumberGuessingGame.Main'
+}
+
+compileJava.dependsOn spotlessApply
+spotless {
+    java {
+        googleJavaFormat('1.17.0').aosp()
+        target 'src/**/*.java'
+        removeUnusedImports()
+    }
 }
