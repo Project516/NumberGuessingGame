@@ -1,11 +1,16 @@
 package io.github.project516.NumberGuessingGame;
 
+import java.util.Scanner;
+
 public class Main {
+
     public static void main(String[] args) {
+
+        ScannerHelper scan = new ScannerHelper();
+        SystemInfo systemInfo = new SystemInfo();
+        RandomNumber ranNumber = new RandomNumber();
+
         try {
-            SystemInfo sysInfo = new SystemInfo();
-            RandomNumber ranNumber = new RandomNumber();
-            ScannerHelper scan = new ScannerHelper();
 
             System.out.println("===== DEBUG INFO =====\n\n");
             System.out.println("Java version: " + sysInfo.version());
@@ -16,12 +21,28 @@ public class Main {
             int number = ranNumber.number();
 
             System.out.println("This is a Number Guessing Game!");
-            System.out.print("Guess a number: ");
-            int guess = scan.userGuess();
-            System.out.println(guess);
-            // scan.close();
-        } catch (Exception e) {
+
+            while (true) {
+
+                System.out.print("Guess a number: ");
+                int guess = scan.userGuess();
+                System.out.println(guess);
+                scan.close();
+            }
+
+        } 
+        
+        catch (Exception e) {
+
             e.printStackTrace();
+        } 
+
+        
+        finally {
+
+            scan.close();
         }
+
     }
+    
 }
