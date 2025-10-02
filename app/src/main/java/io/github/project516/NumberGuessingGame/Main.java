@@ -1,13 +1,13 @@
 package io.github.project516.NumberGuessingGame;
 
-import java.util.Scanner;
-
 public class Main {
 
     public static void main(String[] args) {
 
+        int numOfGuesses = 0;
+
         ScannerHelper scan = new ScannerHelper();
-        SystemInfo systemInfo = new SystemInfo();
+        SystemInfo sysInfo = new SystemInfo();
         RandomNumber ranNumber = new RandomNumber();
 
         try {
@@ -26,23 +26,25 @@ public class Main {
 
                 System.out.print("Guess a number: ");
                 int guess = scan.userGuess();
-                System.out.println(guess);
-                scan.close();
+                if (guess > number) {
+                    System.out.println("You guessed to much!");
+                } else if (guess < number) {
+                    System.out.println("You guessed to little!");
+                } else {
+                    numOfGuesses++;
+                    break;
+                }
+                numOfGuesses++;
             }
 
-        } 
-        
-        catch (Exception e) {
+            System.out.println("Took you " + numOfGuesses + " guesses!");
+
+        } catch (Exception e) {
 
             e.printStackTrace();
-        } 
-
-        
-        finally {
+        } finally {
 
             scan.close();
         }
-
     }
-    
 }
