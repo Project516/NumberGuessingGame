@@ -62,7 +62,7 @@ compileJava.dependsOn spotlessApply
 
 spotless {
     java {
-        googleJavaFormat('1.17.0').aosp()
+        googleJavaFormat('1.28.0').aosp()
         target 'src/**/*.java'
         removeUnusedImports()
     }
