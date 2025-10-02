@@ -44,8 +44,10 @@ testing {
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {
-    sourceCompatibility = JavaVersion.VERSION_25
-    targetCompatibility = JavaVersion.VERSION_25
+    toolchain {
+        // Use JDK 21
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 /*
