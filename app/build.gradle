@@ -9,7 +9,14 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+
+    //Spotless
     id 'com.diffplug.spotless' version '8.0.0'
+
+    // TeaVM
+    id 'java'
+    id 'war'
+    id "org.teavm" version "0.12.3"
 }
 
 repositories {
@@ -20,6 +27,9 @@ repositories {
 dependencies {
     // This dependency is used by the application.
     implementation libs.guava
+
+    // TeaVM
+    implementation teavm.libs.jsoApis
 }
 
 testing {
@@ -40,7 +50,7 @@ java {
 }
 
 tasks.withType(JavaCompile) {
-    options.release.set(8)
+    options.release.set(11)
 }
 
 application {
@@ -55,5 +65,23 @@ spotless {
         googleJavaFormat('1.17.0').aosp()
         target 'src/**/*.java'
         removeUnusedImports()
+    }
+}
+
+teavm {
+    all {
+        mainClass = "io.github.project516.NumberGuessingGame.Main"
+    }
+    js {
+        addedToWebApp = true
+
+        // this is also optional, default value is <project name>.js
+        targetFileName = "NumberGuessingGame.js"
+    }
+    wasmGC {
+        addedToWebApp = true
+
+        // this is also optional, default value is <project name>.wasm
+        targetFileName = "NumberGuessingGame.wasm"
     }
 }
