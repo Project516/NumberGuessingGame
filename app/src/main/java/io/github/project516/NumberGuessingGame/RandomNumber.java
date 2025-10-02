@@ -1,0 +1,11 @@
+package io.github.project516.NumberGuessingGame;
+
+import java.util.*;
+
+class RandomNumber {
+    Random random = new Random();
+
+    int number() {
+        return random.nextInt(100);
+    }
+}
