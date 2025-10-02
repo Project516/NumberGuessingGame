@@ -8,4 +8,8 @@ class SystemInfo {
     String name() {
         return System.getProperty("java.vm.name");
     }
+
+    String version() {
+        return System.getProperty("java.vm.version");
+    }
 }
