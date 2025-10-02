@@ -39,12 +39,17 @@ java {
     }
 }
 
+tasks.withType(JavaCompile) {
+    options.release.set(8)
+}
+
 application {
     // Define the main class for the application.
     mainClass = 'io.github.project516.NumberGuessingGame.Main'
 }
 
 compileJava.dependsOn spotlessApply
+
 spotless {
     java {
         googleJavaFormat('1.17.0').aosp()
