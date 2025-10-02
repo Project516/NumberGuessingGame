@@ -12,11 +12,6 @@ plugins {
 
     //Spotless
     id 'com.diffplug.spotless' version '8.0.0'
-
-    // TeaVM
-    id 'java'
-    id 'war'
-    id "org.teavm" version "0.12.3"
 }
 
 repositories {
@@ -27,9 +22,6 @@ repositories {
 dependencies {
     // This dependency is used by the application.
     implementation libs.guava
-
-    // TeaVM
-    implementation teavm.libs.jsoApis
 }
 
 testing {
@@ -45,12 +37,14 @@ testing {
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
+        // Use JDK 21
         languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
 tasks.withType(JavaCompile) {
-    options.release.set(11)
+    // Target Java 8
+    options.release.set(8)
 }
 
 application {
@@ -65,23 +59,5 @@ spotless {
         googleJavaFormat('1.28.0').aosp()
         target 'src/**/*.java'
         removeUnusedImports()
-    }
-}
-
-teavm {
-    all {
-        mainClass = "io.github.project516.NumberGuessingGame.Main"
-    }
-    js {
-        addedToWebApp = true
-
-        // this is also optional, default value is <project name>.js
-        targetFileName = "NumberGuessingGame.js"
-    }
-    wasmGC {
-        addedToWebApp = true
-
-        // this is also optional, default value is <project name>.wasm
-        targetFileName = "NumberGuessingGame.wasm"
     }
 }
