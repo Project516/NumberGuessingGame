@@ -99,9 +99,9 @@
             
             if (!isNaN(value)) {
                 console.log('> ' + value);
-                // Call the exported Java method
-                if (typeof BrowserMain !== 'undefined' && BrowserMain.checkGuess) {
-                    BrowserMain.checkGuess(value);
+                // Call the exported Java method (exported by @JSExport annotation)
+                if (typeof checkGuess !== 'undefined') {
+                    checkGuess(value);
                 } else {
                     console.log('Error: Game not loaded properly');
                 }
