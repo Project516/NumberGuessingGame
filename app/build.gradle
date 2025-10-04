@@ -4,12 +4,9 @@ plugins {
 
     //Spotless
     id 'com.diffplug.spotless' version '8.0.0'
-    /*
-    // TeaVM
+    
+    // Java plugin for TeaVM support
     id 'java'
-    id 'war'
-    id "org.teavm" version "0.12.3"
-    */
 }
 
 repositories {
@@ -20,10 +17,11 @@ repositories {
 dependencies {
     // This dependency is used by the application.
     implementation libs.guava
-    /*
-    // TeaVM
-    implementation teavm.libs.jsoApis
-    */
+    
+    // TeaVM - JavaScript compiler and browser APIs
+    implementation "org.teavm:teavm-core:${libs.versions.teavm.get()}"
+    implementation "org.teavm:teavm-classlib:${libs.versions.teavm.get()}"
+    implementation libs.teavm.jso.apis
 }
 
 testing {
@@ -59,25 +57,74 @@ spotless {
     }
 }
 
-/*
-teavm {
-    all {
-        mainClass = "io.github.project516.NumberGuessingGame.Main"
-    }
-    js {
-        addedToWebApp = true
+// TeaVM custom task to compile Java to JavaScript
+// Note: We use a custom task instead of the TeaVM Gradle plugin due to compatibility issues with Gradle 9
+configurations {
+    teavmCompile
+}
 
-        // this is also optional, default value is <project name>.js
-        targetFileName = "NumberGuessingGame.js"
-    }
-    wasmGC {
-        addedToWebApp = true
+dependencies {
+    teavmCompile "org.teavm:teavm-tooling:${libs.versions.teavm.get()}"
+}
 
-        // this is also optional, default value is <project name>.wasm
-        targetFileName = "NumberGuessingGame.wasm"
+task compileToJs {
+    group = 'teavm'
+    description = 'Compile Java to JavaScript using TeaVM'
+    
+    def outputDir = file("$buildDir/teavm")
+    outputs.dir(outputDir)
+    inputs.files(sourceSets.main.output)
+    
+    // Store classpath as a property to avoid configuration cache issues
+    def teavmClasspath = configurations.teavmCompile + sourceSets.main.runtimeClasspath
+    
+    dependsOn classes
+    
+    doLast {
+        outputDir.mkdirs()
+        
+        // Use TeaVM API directly
+        def loader = new URLClassLoader(
+            teavmClasspath.files.collect { it.toURI().toURL() } as URL[],
+            getClass().classLoader
+        )
+        
+        def toolClass = loader.loadClass('org.teavm.tooling.TeaVMTool')
+        def optLevelClass = loader.loadClass('org.teavm.vm.TeaVMOptimizationLevel')
+        
+        def tool = toolClass.newInstance()
+        tool.setTargetDirectory(outputDir)
+        tool.setTargetFileName('NumberGuessingGame.js')
+        tool.setMainClass('io.github.project516.NumberGuessingGame.BrowserMain')
+        tool.setOptimizationLevel(optLevelClass.SIMPLE)
+        tool.setDebugInformationGenerated(true)
+        tool.setSourceMapsFileGenerated(true)
+        tool.setSourceFilesCopied(true)
+        tool.setClassLoader(loader)
+        
+        println 'Starting TeaVM compilation...'
+        tool.generate()
+        println 'TeaVM compilation complete!'
     }
 }
-*/
+
+// Copy HTML page to TeaVM output directory
+task copyTeaVMResources(type: Copy) {
+    group = 'teavm'
+    description = 'Copy HTML and resources to TeaVM output directory'
+    
+    from 'src/main/webapp'
+    into "$buildDir/teavm"
+    
+    dependsOn compileToJs
+}
+
+task buildTeaVM {
+    group = 'teavm'
+    description = 'Build complete TeaVM application'
+    
+    dependsOn copyTeaVMResources
+}
 
 // Jar config
 jar {

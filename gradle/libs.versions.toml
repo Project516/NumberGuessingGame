@@ -3,6 +3,8 @@
 
 [versions]
 guava = "33.5.0-jre"
+teavm = "0.10.0"
 
 [libraries]
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
+teavm-jso-apis = { module = "org.teavm:teavm-jso-apis", version.ref = "teavm" }

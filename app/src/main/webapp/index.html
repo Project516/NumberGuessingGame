@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Number Guessing Game - TeaVM</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        #output {
+            background-color: #000;
+            color: #0f0;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            min-height: 200px;
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        #userInput {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .info {
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Number Guessing Game</h1>
+        <div class="info">Compiled with TeaVM - Java to JavaScript</div>
+        <div id="output"></div>
+        <div class="input-group">
+            <input type="number" id="userInput" placeholder="Enter your guess..." />
+            <button id="submitBtn">Submit</button>
+        </div>
+    </div>
+
+    <!-- Override console.log to display in our output div -->
+    <script>
+        const outputDiv = document.getElementById('output');
+        const originalLog = console.log;
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            const message = args.join(' ');
+            outputDiv.textContent += message + '\n';
+            outputDiv.scrollTop = outputDiv.scrollHeight;
+        };
+        
+        // Function to submit guess
+        function submitGuess() {
+            const input = document.getElementById('userInput');
+            const value = parseInt(input.value);
+            
+            if (!isNaN(value)) {
+                console.log('> ' + value);
+                // Call the exported Java method
+                if (typeof BrowserMain !== 'undefined' && BrowserMain.checkGuess) {
+                    BrowserMain.checkGuess(value);
+                } else {
+                    console.log('Error: Game not loaded properly');
+                }
+                input.value = '';
+                input.focus();
+            }
+        }
+        
+        // Handle Enter key press
+        document.getElementById('userInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                submitGuess();
+            }
+        });
+        
+        // Handle button click
+        document.getElementById('submitBtn').addEventListener('click', submitGuess);
+    </script>
+    
+    <!-- Load TeaVM compiled JavaScript -->
+    <script src="NumberGuessingGame.js"></script>
+    
+    <script>
+        // Start the game when page loads
+        window.addEventListener('load', function() {
+            if (typeof main !== 'undefined') {
+                main([]);
+            } else {
+                console.log('Error: TeaVM application not loaded properly');
+            }
+        });
+    </script>
+</body>
+</html>
