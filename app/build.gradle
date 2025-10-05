@@ -31,7 +31,7 @@ testing {
         // Configure the built-in test suite
         test {
             // Use JUnit Jupiter test framework
-            useJUnitJupiter('6.0.0')
+            useJUnitJupiter('5.14.0')
         }
     }
 }
@@ -42,6 +42,10 @@ java {
         // Use JDK 21
         languageVersion = JavaLanguageVersion.of(21)
     }
+}
+
+tasks.withType(JavaCompile) {
+    options.release.set(8)
 }
 
 application {
