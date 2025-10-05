@@ -41,7 +41,10 @@ public class Main {
 
         } catch (Exception e) {
 
+            System.out.println("\n\n=====Program Crashed!=====");
+
             e.printStackTrace();
+
         } finally {
 
             scan.close();
