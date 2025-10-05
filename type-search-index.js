@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"io.github.project516.NumberGuessingGame","l":"Main"},{"p":"io.github.project516.NumberGuessingGame","l":"ScannerHelper"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html","k":"18"},{"p":"io.github.project516.NumberGuessingGame","l":"Main"},{"p":"io.github.project516.NumberGuessingGame","l":"ScannerHelper"}];updateSearchResults();
