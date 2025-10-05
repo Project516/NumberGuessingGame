@@ -39,8 +39,8 @@ testing {
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
-        // Use JDK 21
-        languageVersion = JavaLanguageVersion.of(21)
+        // Use JDK 25
+        languageVersion = JavaLanguageVersion.of(25)
     }
 }
 

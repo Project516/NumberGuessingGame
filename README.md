@@ -1,3 +1,3 @@
 # NumberGuessingGame
 
-### Java 21 is required!
+### Java 25 is required!
