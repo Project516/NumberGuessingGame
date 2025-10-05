@@ -42,8 +42,6 @@ java {
         // Use JDK 25
         languageVersion = JavaLanguageVersion.of(25)
     }
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 tasks.withType(JavaCompile) {
