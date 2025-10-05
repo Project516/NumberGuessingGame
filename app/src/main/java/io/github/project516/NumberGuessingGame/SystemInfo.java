@@ -1,6 +1,7 @@
 package io.github.project516.NumberGuessingGame;
 
-class SystemInfo {
+public class SystemInfo {
+
     String vendor() {
         return System.getProperty("java.vm.vendor");
     }
