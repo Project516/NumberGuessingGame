@@ -30,8 +30,8 @@ testing {
     suites {
         // Configure the built-in test suite
         test {
-            // Use JUnit Jupiter test framework (5.10.x is the last version supporting Java 8)
-            useJUnitJupiter('5.10.3')
+            // Use JUnit Jupiter test framework
+            useJUnitJupiter('5.14.0')
         }
     }
 }
@@ -44,6 +44,10 @@ java {
     }
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+tasks.withType(JavaCompile) {
+    options.release.set(8)
 }
 
 application {
