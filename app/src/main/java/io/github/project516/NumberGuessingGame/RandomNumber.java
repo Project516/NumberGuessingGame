@@ -6,6 +6,7 @@ public class RandomNumber {
     Random random = new Random();
 
     int number() {
-        return random.nextInt(100);
+
+        return random.nextInt(101);
     }
 }
