@@ -1,3 +1,7 @@
 # NumberGuessingGame
 
-### Java 25 is required!
+## Set up
+
+Run:
+`sdk install java 25-tem`
+`sdk install gradle`
