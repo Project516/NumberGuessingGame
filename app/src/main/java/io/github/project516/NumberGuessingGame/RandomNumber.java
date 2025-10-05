@@ -2,7 +2,7 @@ package io.github.project516.NumberGuessingGame;
 
 import java.util.*;
 
-class RandomNumber {
+public class RandomNumber {
     Random random = new Random();
 
     int number() {
