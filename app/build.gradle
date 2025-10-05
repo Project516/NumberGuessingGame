@@ -30,8 +30,8 @@ testing {
     suites {
         // Configure the built-in test suite
         test {
-            // Use JUnit Jupiter test framework
-            useJUnitJupiter('6.0.0')
+            // Use JUnit Jupiter test framework (5.10.x is the last version supporting Java 8)
+            useJUnitJupiter('5.10.3')
         }
     }
 }
@@ -39,9 +39,11 @@ testing {
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
-        // Use JDK 21
-        languageVersion = JavaLanguageVersion.of(21)
+        // Use JDK 25
+        languageVersion = JavaLanguageVersion.of(25)
     }
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 application {
