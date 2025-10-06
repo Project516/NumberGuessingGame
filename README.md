@@ -2,11 +2,11 @@
 
 A simple number guessing game where you try to guess a randomly generated number. The game will tell you if your guess is too high or too low until you find the correct number.
 
-## For End Users
+## Running the Game
 
 ### Requirements
 
-- Java 8 or higher
+- Java 8 or higher (may require Java 17+ in future versions)
 
 ### How to Run
 
@@ -24,26 +24,32 @@ Run `run.sh` or execute `java -jar app.jar`
 4. Keep guessing until you find the correct number
 5. The game will display how many guesses it took you
 
-## For Developers
+## Development
 
 ### Requirements
 
-- Java 8 or higher (Eclipse Temurin recommended)
+- Java 25 (Eclipse Temurin recommended for development)
 - Gradle
 
 ### Development Setup
 
-Install SDKMAN! and run:
+SDKMAN is the recommended way to install Java and Gradle (pre-installed in GitHub Codespaces):
 
 ```
 sdk install java 25-tem
 sdk install gradle
 ```
 
-Or install Eclipse Temurin JDK directly from https://adoptium.net/
+Alternatively, install Eclipse Temurin JDK directly from https://adoptium.net/
 
 ### Building
 
+From the project root:
+```
+gradle build
+```
+
+Or from the app directory:
 ```
 cd app
 gradle build
@@ -58,4 +64,4 @@ gradle test
 
 ### Creating Release Archive
 
-Run `./package.sh` from the project root. This will create `archive.zip` containing the application and run scripts.
+Run `./package.sh` from the project root. This will create `archive.zip` containing the application, run scripts, and README. The archive can be released to GitHub Releases.
