@@ -41,7 +41,7 @@ public class Main {
 
         } catch (Exception e) {
 
-            System.out.println("\n\n=====Program Crashed!=====");
+            System.out.println("\n\n=====Program Crashed!=====\n\n");
 
             e.printStackTrace();
 
