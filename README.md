@@ -14,7 +14,7 @@ A simple number guessing game where you try to guess a randomly generated number
 Run `run.bat`
 
 **On Linux/Mac:**
-Run `run.sh` or execute `java -jar app.jar`
+Run `run.sh`
 
 ### How to Play
 
