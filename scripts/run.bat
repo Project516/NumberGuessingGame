@@ -1,5 +1,5 @@
 @echo off
 
-java -jar app.jar
+java -jar game.jar
 
 @pause
