@@ -2,7 +2,7 @@
 
 rm -rf NumberGuessingGame
 rm -rf temp
-rm -r archive.zip
+rm -f archive.zip
 cd app
 gradle build
 cd ..
