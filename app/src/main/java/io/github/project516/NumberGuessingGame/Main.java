@@ -7,22 +7,16 @@ public class Main {
         int numOfGuesses = 0;
 
         ScannerHelper scan = new ScannerHelper();
-        SystemInfo sysInfo = new SystemInfo();
         RandomNumber ranNumber = new RandomNumber();
         CheckGuess check = new CheckGuess();
+        DebugInfo debugInfo = new DebugInfo();
+        GameInfo gameInfo = new GameInfo();
+
+        debugInfo.launchDebug();
 
         try {
-
-            System.out.println("===== DEBUG INFO =====\n\n");
-            System.out.println("Java version: " + sysInfo.version());
-            System.out.println("Vendor: " + sysInfo.vendor());
-            System.out.println("JDK name: " + sysInfo.name());
-            System.out.println("\n\n======================\n\n");
-
             int number = ranNumber.number();
-
-            System.out.println("This is a Number Guessing Game!");
-            System.out.println("Guess a number between 1 and 100!\n");
+            gameInfo.about();
 
             while (true) {
 
