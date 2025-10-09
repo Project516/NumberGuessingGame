@@ -9,6 +9,7 @@ public class Main {
         ScannerHelper scan = new ScannerHelper();
         SystemInfo sysInfo = new SystemInfo();
         RandomNumber ranNumber = new RandomNumber();
+        CheckGuess check = new CheckGuess();
 
         try {
 
@@ -27,6 +28,7 @@ public class Main {
 
                 System.out.print("Guess a number: ");
                 int guess = scan.userGuess();
+                check.check(guess);
                 if (guess > number) {
                     System.out.println("You guessed to much!");
                 } else if (guess < number) {
