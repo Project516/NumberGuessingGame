@@ -7,6 +7,12 @@ import javax.swing.*;
 public class GUI {
     void createWindow() {
         JFrame jframe = new JFrame();
-        jframe.setVisible(true);
+        jframe.setVisible(true); // Set visible
+        jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); // Exit on close
+    }
+
+    public static void main(String[] args) { // Test GUI
+        GUI GUI = new GUI();
+        GUI.createWindow();
     }
 }
