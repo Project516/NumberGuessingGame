@@ -8,9 +8,10 @@ import javax.swing.*;
 public class GUI {
     void createWindow() {
         JFrame jframe = new JFrame("Number Guessing Game");
-        JLabel jLabel = new JLabel("Number Guessing Game", SwingConstants.CENTER);
+        JLabel jlabel = new JLabel("Number Guessing Game", SwingConstants.CENTER);
+        // JButton jbutton = new JButton("Start game!");
 
-        jframe.getContentPane().add(jLabel, BorderLayout.CENTER);
+        jframe.getContentPane().add(jlabel, BorderLayout.CENTER);
 
         jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); // Exit on close
         jframe.setSize(300, 300);
