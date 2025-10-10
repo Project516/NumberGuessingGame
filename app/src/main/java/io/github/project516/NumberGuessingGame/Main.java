@@ -15,7 +15,7 @@ public class Main {
         debugInfo.launchDebug();
 
         try {
-            int number = ranNumber.number();
+            int number = ranNumber.number(100);
             gameInfo.about();
 
             while (true) {
@@ -38,7 +38,7 @@ public class Main {
 
         } catch (Exception e) {
 
-            System.out.println("\n\n=====Program Crashed!=====\n\n");
+            debugInfo.gameCrash();
 
             e.printStackTrace();
 

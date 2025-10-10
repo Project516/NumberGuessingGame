@@ -11,4 +11,8 @@ public class DebugInfo {
         System.out.println("JDK name: " + sysInfo.name());
         System.out.println("\n\n======================\n\n");
     }
+
+    void gameCrash() {
+        System.out.println("\n\n=====Program Crashed!=====\n\n");
+    }
 }

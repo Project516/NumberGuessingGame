@@ -8,6 +8,6 @@ class RandomNumberTest {
     @Test
     void ranNum() {
         RandomNumber classUnderTest = new RandomNumber();
-        assertNotNull(classUnderTest.number(), "expect output!");
+        assertNotNull(classUnderTest.number(100), "expect output!");
     }
 }
