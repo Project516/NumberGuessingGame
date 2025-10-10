@@ -6,8 +6,8 @@ public class RandomNumber {
 
     Random random = new Random();
 
-    int number() {
+    int number(int max) {
 
-        return random.nextInt(101);
+        return random.nextInt(max + 1);
     }
 }
