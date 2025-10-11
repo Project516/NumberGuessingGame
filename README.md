@@ -49,23 +49,16 @@ From the project root:
 gradle build
 ```
 
-Or from the app directory:
-```
-cd app
-gradle build
-```
-
 ### Running Tests
 
 ```
-cd app
 gradle test
 ```
 
 ### Creating Release Archive
 
 **On Windows:**
-Run `package.bat` from the project root.
+Run `.\gradlew build` and `package.bat` from the project root.
 
 **On Linux/Mac:**
 Run `./package.sh` from the project root.
