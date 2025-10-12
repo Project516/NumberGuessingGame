@@ -22,7 +22,9 @@
   <launchable type="desktop-id">io.github.project516.NumberGuessingGame.desktop</launchable>
   <url type="homepage">https://github.com/Project516/NumberGuessingGame</url>
   <url type="bugtracker">https://github.com/Project516/NumberGuessingGame/issues</url>
-  <developer_name>project516</developer_name>
+  <developer id="io.github.project516">
+    <name>project516</name>
+  </developer>
   <content_rating type="oars-1.1" />
   <releases>
     <release version="1.0.0" date="2025-10-12">
@@ -41,9 +43,5 @@
     <keyword>number</keyword>
     <keyword>terminal</keyword>
   </keywords>
-  <screenshots>
-    <screenshot type="default">
-      <caption>Number Guessing Game in action</caption>
-    </screenshot>
-  </screenshots>
+
 </component>
