@@ -1,0 +1,4 @@
+#!/bin/sh
+# Wrapper script to launch Number Guessing Game
+
+java -jar /usr/share/games/numberguessinggame/game.jar "$@"
