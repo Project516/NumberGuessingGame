@@ -1,0 +1,11 @@
+Package: numberguessinggame
+Version: 1.0.0
+Section: games
+Priority: optional
+Architecture: all
+Depends: default-jre | java8-runtime
+Maintainer: Project516 <project516@github.com>
+Description: A simple number guessing game
+ A simple number guessing game where you try to guess a randomly
+ generated number. The game will tell you if your guess is too high
+ or too low until you find the correct number.
