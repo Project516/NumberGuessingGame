@@ -4,9 +4,31 @@ A simple number guessing game where you try to guess a randomly generated number
 
 ## Installation & Running
 
+### Installation via Flatpak (Linux - Cross-distro)
+
+**Recommended for all Linux distributions:**
+
+Once the app is published on Flathub, you can install it with:
+
+```bash
+flatpak install flathub io.github.project516.NumberGuessingGame
+```
+
+Run the game:
+```bash
+flatpak run io.github.project516.NumberGuessingGame
+```
+
+To uninstall:
+```bash
+flatpak uninstall io.github.project516.NumberGuessingGame
+```
+
+For more information about Flatpak, visit [flatpak.org](https://flatpak.org)
+
 ### Installation via Debian Package (Linux)
 
-For Debian/Ubuntu and derivatives (recommended for terminal usage):
+For Debian/Ubuntu and derivatives:
 
 1. Download the `.deb` package from the [latest release](https://github.com/Project516/NumberGuessingGame/releases)
 2. Install it:
@@ -95,3 +117,14 @@ This will create `archive.zip` containing the application, run scripts, and READ
 Run `./package-deb.sh` from the project root.
 
 This will create `numberguessinggame.deb` which can be installed via `apt`/`dpkg` on Debian-based systems. The package can be released to GitHub Releases for easy distribution.
+
+#### Flatpak
+
+**On Linux:**
+
+Prerequisites:
+- Install `flatpak-builder`: `sudo apt install flatpak-builder` (on Debian/Ubuntu)
+
+Run `./package-flatpak.sh` from the project root for local testing.
+
+This will build a Flatpak package. For distribution via Flathub, the manifest file `io.github.project516.NumberGuessingGame.yml` should be submitted to the [Flathub repository](https://github.com/flathub/flathub) following their [submission guidelines](https://docs.flathub.org/docs/for-app-authors/submission/).

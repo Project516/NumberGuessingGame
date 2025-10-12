@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Number Guessing Game
+Comment=A simple number guessing game
+Exec=numberguessinggame
+Icon=io.github.project516.NumberGuessingGame
+Type=Application
+Categories=Game;ConsoleOnly;
+Terminal=true
+Keywords=game;guessing;number;
