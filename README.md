@@ -2,13 +2,35 @@
 
 A simple number guessing game where you try to guess a randomly generated number. The game will tell you if your guess is too high or too low until you find the correct number.
 
-## Running the Game
+## Installation & Running
 
-### Requirements
+### Installation via Debian Package (Linux)
+
+For Debian/Ubuntu and derivatives (recommended for terminal usage):
+
+1. Download the `.deb` package from the [latest release](https://github.com/Project516/NumberGuessingGame/releases)
+2. Install it:
+   ```bash
+   sudo dpkg -i numberguessinggame.deb
+   sudo apt-get install -f  # Install dependencies if needed
+   ```
+3. Run from anywhere in your terminal:
+   ```bash
+   numberguessinggame
+   ```
+
+To uninstall:
+```bash
+sudo dpkg -r numberguessinggame
+```
+
+### Manual Installation
+
+#### Requirements
 
 - Java 8 or higher (may require Java 17+ in future versions)
 
-### How to Run
+#### How to Run
 
 **On Windows:**
 Run `run.bat`
@@ -55,7 +77,9 @@ gradle build
 gradle test
 ```
 
-### Creating Release Archive
+### Creating Release Archives
+
+#### Zip Archive
 
 **On Windows:**
 Run `.\gradlew build` and `package.bat` from the project root.
@@ -64,3 +88,10 @@ Run `.\gradlew build` and `package.bat` from the project root.
 Run `./package.sh` from the project root.
 
 This will create `archive.zip` containing the application, run scripts, and README. The archive can be released to GitHub Releases.
+
+#### Debian Package
+
+**On Linux:**
+Run `./package-deb.sh` from the project root.
+
+This will create `numberguessinggame.deb` which can be installed via `apt`/`dpkg` on Debian-based systems. The package can be released to GitHub Releases for easy distribution.
