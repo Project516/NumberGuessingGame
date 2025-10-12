@@ -11,9 +11,8 @@ rm -f numberguessinggame.deb
 
 # Build the application
 echo "Building application..."
-cd app
+
 gradle build
-cd ..
 
 # Copy the jar file
 echo "Copying files to package directory..."
@@ -24,6 +23,7 @@ cp README.md debian-package/usr/share/games/numberguessinggame/README.md
 cp LICENSE debian-package/usr/share/games/numberguessinggame/LICENSE
 
 # Set permissions
+chmod 755 debian-package/DEBIAN
 chmod 755 debian-package/DEBIAN/postinst
 chmod 755 debian-package/usr/games/numberguessinggame
 
@@ -35,7 +35,7 @@ echo ""
 echo "✓ Debian package created: numberguessinggame.deb"
 echo ""
 echo "To install, run:"
-echo "  sudo dpkg -i numberguessinggame.deb"
+echo "  sudo apt install ./numberguessinggame.deb"
 echo "  sudo apt-get install -f  # to install any missing dependencies"
 echo ""
 echo "After installation, run the game with:"
