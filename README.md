@@ -11,8 +11,9 @@ For Debian/Ubuntu and derivatives (recommended for terminal usage):
 1. Download the `.deb` package from the [latest release](https://github.com/Project516/NumberGuessingGame/releases)
 2. Install it:
    ```bash
-   sudo dpkg -i numberguessinggame.deb
-   sudo apt-get install -f  # Install dependencies if needed
+   sudo apt update # Update packages
+   sudo apt install ./numberguessinggame.deb # From directory the deb package is in
+   sudo apt install -f  # Install dependencies if needed
    ```
 3. Run from anywhere in your terminal:
    ```bash
@@ -21,7 +22,7 @@ For Debian/Ubuntu and derivatives (recommended for terminal usage):
 
 To uninstall:
 ```bash
-sudo dpkg -r numberguessinggame
+sudo apt remove numberguessinggame
 ```
 
 ### Manual Installation
@@ -82,12 +83,12 @@ gradle test
 #### Zip Archive
 
 **On Windows:**
-Run `.\gradlew build` and `package.bat` from the project root.
+Run `.\gradlew build` and `.\package.bat` from the project root.
 
 **On Linux/Mac:**
 Run `./package.sh` from the project root.
 
-This will create `archive.zip` containing the application, run scripts, and README. The archive can be released to GitHub Releases.
+This will create `archive.zip` containing the application, run scripts, README, and LICENSE. The archive can be released to GitHub Releases.
 
 #### Debian Package
 
