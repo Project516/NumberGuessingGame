@@ -18,7 +18,7 @@ modules:
   - name: numberguessinggame
     buildsystem: simple
     build-commands:
-      - install -Dm755 run.sh /app/bin/numberguessinggame
+      - install -Dm755 flatpak-run.sh /app/bin/numberguessinggame
       - install -Dm644 game.jar /app/share/numberguessinggame/game.jar
       - install -Dm644 io.github.project516.NumberGuessingGame.desktop /app/share/applications/io.github.project516.NumberGuessingGame.desktop
       - install -Dm644 io.github.project516.NumberGuessingGame.metainfo.xml /app/share/metainfo/io.github.project516.NumberGuessingGame.metainfo.xml
@@ -28,7 +28,7 @@ modules:
         path: app/build/libs/app.jar
         dest-filename: game.jar
       - type: file
-        path: scripts/run.sh
+        path: flatpak-run.sh
       - type: file
         path: io.github.project516.NumberGuessingGame.desktop
       - type: file
