@@ -9,6 +9,7 @@ A simple number guessing game where you try to guess a randomly generated number
 For Debian/Ubuntu and derivatives (recommended for terminal usage):
 
 1. Download the `.deb` package from the [latest release](https://github.com/Project516/NumberGuessingGame/releases)
+   You can use curl to do it from the command line: ` curl -s -L -o numberguessingame.deb https://github.com/Project516/NumberGuessingGame/releases/download/0.0.x/numberguessinggame.deb` where `x` is the version you want - so for 0.0.5, it would be `https://github.com/Project516/NumberGuessingGame/releases/download/0.0.5/numberguessinggame.deb`
 2. Install it:
    ```bash
    sudo apt update # Update packages
