@@ -12,7 +12,7 @@ public class Main {
         debugInfo.launchDebug();
 
         try {
-            
+
             gameInfo.about();
             logic.game();
 

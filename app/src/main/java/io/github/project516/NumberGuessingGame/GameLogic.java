@@ -22,6 +22,7 @@ public class GameLogic {
             } else {
                 numOfGuesses++;
                 System.out.println("Took you " + numOfGuesses + " guesses!");
+                scan.close();
                 break;
             }
             numOfGuesses++;
