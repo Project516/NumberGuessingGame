@@ -15,13 +15,13 @@ For Debian/Ubuntu and derivatives (recommended for terminal usage):
    curl -s -L -o numberguessingame.deb https://github.com/Project516/NumberGuessingGame/releases/download/0.0.x/numberguessinggame.deb
    ```
    where `x` is the version you want.
-3. Install it:
+2. Install it:
    ```bash
    sudo apt update # Update packages
    sudo apt install ./numberguessinggame.deb # From directory with the deb package
    sudo apt install -f  # Install dependencies
    ```
-4. Run from anywhere in your terminal:
+3. Run from anywhere in your terminal:
    ```bash
    numberguessinggame
    ```
