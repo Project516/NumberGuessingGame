@@ -6,7 +6,7 @@ public class DebugInfo {
     ReadVersionFile vFile = new ReadVersionFile();
 
     void launchDebug() {
-        System.out.println("===== DEBUG INFO =====\n\n");
+        System.out.println("\n===== DEBUG INFO =====\n\n");
         System.out.println("Java version: " + sysInfo.version());
         System.out.println("Vendor: " + sysInfo.vendor());
         System.out.println("JDK name: " + sysInfo.name());
@@ -15,6 +15,6 @@ public class DebugInfo {
     }
 
     void gameCrash() {
-        System.out.println("\n\n=====Program Crashed!=====\n\n");
+        System.out.println("\n\n===Program Crashed!===\n\n");
     }
 }

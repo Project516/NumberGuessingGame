@@ -3,7 +3,7 @@ package io.github.project516.NumberGuessingGame;
 import java.awt.*;
 import javax.swing.*;
 
-// TODO make gui window
+// TODO
 
 public class GUI {
     void createWindow() {
