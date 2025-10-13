@@ -9,14 +9,19 @@ A simple number guessing game where you try to guess a randomly generated number
 For Debian/Ubuntu and derivatives (recommended for terminal usage):
 
 1. Download the `.deb` package from the [latest release](https://github.com/Project516/NumberGuessingGame/releases)
-   You can use curl to do it from the command line: ` curl -s -L -o numberguessingame.deb https://github.com/Project516/NumberGuessingGame/releases/download/0.0.x/numberguessinggame.deb` where `x` is the version you want - so for 0.0.5, it would be `https://github.com/Project516/NumberGuessingGame/releases/download/0.0.5/numberguessinggame.deb`
-2. Install it:
+
+   You can use curl to do it from the command line:
+   ```bash
+   curl -s -L -o numberguessingame.deb https://github.com/Project516/NumberGuessingGame/releases/download/0.0.x/numberguessinggame.deb
+   ```
+   where `x` is the version you want.
+3. Install it:
    ```bash
    sudo apt update # Update packages
-   sudo apt install ./numberguessinggame.deb # From directory the deb package is in
-   sudo apt install -f  # Install dependencies if needed
+   sudo apt install ./numberguessinggame.deb # From directory with the deb package
+   sudo apt install -f  # Install dependencies
    ```
-3. Run from anywhere in your terminal:
+4. Run from anywhere in your terminal:
    ```bash
    numberguessinggame
    ```
@@ -24,6 +29,7 @@ For Debian/Ubuntu and derivatives (recommended for terminal usage):
 To uninstall:
 ```bash
 sudo apt remove numberguessinggame
+sudo apt autoremove -y # Remove dependencies
 ```
 
 ### Manual Installation
