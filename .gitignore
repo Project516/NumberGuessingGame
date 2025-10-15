@@ -25,3 +25,14 @@ build
 
 archive.zip
 numberguessinggame.deb
+
+# JRE bundling artifacts
+jre-windows/
+jre-macos/
+jre-linux/
+NumberGuessingGame-windows/
+NumberGuessingGame-macos/
+NumberGuessingGame-linux/
+NumberGuessingGame-windows.zip
+NumberGuessingGame-macos.zip
+NumberGuessingGame-linux.tar.gz
