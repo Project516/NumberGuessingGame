@@ -12,6 +12,6 @@ public class ReadVersionFile {
      * @return the version string
      */
     public String readVersion() {
-        return "0.0.6";
+        return "0.0.7";
     }
 }
