@@ -81,7 +81,7 @@ Run `run.sh`
 
 ### Development Setup
 
-SDKMAN is the recommended way to install Java and Gradle (pre-installed in GitHub Codespaces):
+[SDKMAN!](https://sdkman.io) is the recommended way to install Java and Gradle:
 
 ```
 sdk install java 25-tem
@@ -128,9 +128,9 @@ This will create `numberguessinggame.deb` which can be installed via `apt`/`dpkg
 Run the following scripts to create platform-specific packages with bundled JRE:
 
 ```bash
-./package-jre-windows.sh  # Creates NumberGuessingGame-windows.zip
-./package-jre-macos.sh    # Creates NumberGuessingGame-macos.zip
-./package-jre-linux.sh    # Creates NumberGuessingGame-linux.tar.gz
+./package-win.sh  # Creates NumberGuessingGame-windows.zip
+./package-macos.sh    # Creates NumberGuessingGame-macos.zip
+./package-linux.sh    # Creates NumberGuessingGame-linux.tar.gz
 ```
 
 These packages include a bundled JRE and do not require Java to be installed on the target system. They are automatically built and uploaded to GitHub Releases via GitHub Actions.
