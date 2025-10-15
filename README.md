@@ -32,9 +32,25 @@ sudo apt remove numberguessinggame
 sudo apt autoremove -y # Remove dependencies
 ```
 
-### Manual Installation
+### Standalone Packages with Bundled JRE (Recommended)
 
-Download the `zip` archive from the [latest release](https://github.com/project516/numberguessinggame/releases)
+Download the platform-specific package with bundled JRE from the [latest release](https://github.com/project516/numberguessinggame/releases):
+
+- **Windows**: `NumberGuessingGame-windows.zip` (no Java installation required)
+- **macOS**: `NumberGuessingGame-macos.zip` (no Java installation required)
+- **Linux**: `NumberGuessingGame-linux.tar.gz` (no Java installation required)
+
+Extract the downloaded archive and run:
+
+**On Windows:**
+Run `run.bat`
+
+**On Linux/Mac:**
+Run `run.sh`
+
+### Manual Installation (Requires Java)
+
+Download the `archive.zip` from the [latest release](https://github.com/project516/numberguessinggame/releases)
 
 #### Requirements
 
@@ -89,7 +105,7 @@ gradle test
 
 ### Creating Release Archives
 
-#### Zip Archive
+#### Zip Archive (Requires Java)
 
 **On Windows:**
 Run `.\gradlew build` and `.\package.bat` from the project root.
@@ -105,3 +121,16 @@ This will create `archive.zip` containing the application, run scripts, README, 
 Run `./package-deb.sh` from the project root.
 
 This will create `numberguessinggame.deb` which can be installed via `apt`/`dpkg` on Debian-based systems. The package can be released to GitHub Releases for easy distribution.
+
+#### Platform-Specific Packages with Bundled JRE
+
+**On Linux:**
+Run the following scripts to create platform-specific packages with bundled JRE:
+
+```bash
+./package-jre-windows.sh  # Creates NumberGuessingGame-windows.zip
+./package-jre-macos.sh    # Creates NumberGuessingGame-macos.zip
+./package-jre-linux.sh    # Creates NumberGuessingGame-linux.tar.gz
+```
+
+These packages include a bundled JRE and do not require Java to be installed on the target system. They are automatically built and uploaded to GitHub Releases via GitHub Actions.
