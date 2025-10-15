@@ -21,8 +21,6 @@ public class Main {
 
         debugInfo.launchDebug();
 
-        // while (true) {
-
         try {
 
             gameInfo.about();
@@ -37,6 +35,5 @@ public class Main {
 
             scan.close();
         }
-        // }
     }
 }
