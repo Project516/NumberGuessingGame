@@ -1,7 +1,15 @@
 package io.github.project516.NumberGuessingGame;
 
+/**
+ * Contains the main game logic for the Number Guessing Game. This class manages the game loop, user
+ * input, and guess validation.
+ */
 public class GameLogic {
     // TODO port game logic from Main to GameLogic
+    /**
+     * Runs the main game loop. Generates a random number and prompts the user to guess it. Provides
+     * feedback on each guess and tracks the number of attempts.
+     */
     void game() {
 
         RandomNumber ranNumber = new RandomNumber();
