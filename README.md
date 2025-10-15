@@ -34,6 +34,8 @@ sudo apt autoremove -y # Remove dependencies
 
 ### Manual Installation
 
+Download the `zip` archive from the [latest release](https://github.com/project516/numberguessinggame/releases)
+
 #### Requirements
 
 - Java 8 or higher (may require Java 17+ in future versions)

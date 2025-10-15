@@ -21,6 +21,8 @@ public class Main {
 
         debugInfo.launchDebug();
 
+        // while (true) {
+
         try {
 
             gameInfo.about();
@@ -29,12 +31,12 @@ public class Main {
         } catch (Exception e) {
 
             debugInfo.gameCrash();
-
             e.printStackTrace();
 
         } finally {
 
             scan.close();
         }
+        // }
     }
 }
