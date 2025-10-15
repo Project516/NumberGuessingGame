@@ -13,27 +13,7 @@ public class Main {
      * @param args command line arguments (not currently used)
      */
     public static void main(String[] args) {
-
-        ScannerHelper scan = new ScannerHelper();
-        DebugInfo debugInfo = new DebugInfo();
-        GameInfo gameInfo = new GameInfo();
-        GameLogic logic = new GameLogic();
-
-        debugInfo.launchDebug();
-
-        try {
-
-            gameInfo.about();
-            logic.game();
-
-        } catch (Exception e) {
-
-            debugInfo.gameCrash();
-            e.printStackTrace();
-
-        } finally {
-
-            scan.close();
-        }
+        NumberGuessingGame game = new NumberGuessingGame();
+        game.run();
     }
 }
