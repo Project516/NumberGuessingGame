@@ -32,6 +32,15 @@ jobs:
       - name: Build ZIP archive
         run: ./package.sh
 
+      - name: Build Windows package with bundled JRE
+        run: ./package-jre-windows.sh
+
+      - name: Build macOS package with bundled JRE
+        run: ./package-jre-macos.sh
+
+      - name: Build Linux package with bundled JRE
+        run: ./package-jre-linux.sh
+
       - name: Upload release assets
         uses: softprops/action-gh-release@v2
         with:
@@ -39,3 +48,6 @@ jobs:
             ./app/build/libs/app.jar
             ./numberguessinggame.deb
             ./archive.zip
+            ./NumberGuessingGame-windows.zip
+            ./NumberGuessingGame-macos.zip
+            ./NumberGuessingGame-linux.tar.gz
