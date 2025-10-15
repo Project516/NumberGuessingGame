@@ -1,33 +1,33 @@
 #!/bin/sh
-# Script to create a Linux package with bundled JRE for Number Guessing Game
+# Script to create a macOS package with bundled JRE for Number Guessing Game
 
 set -e
 
-echo "Building Number Guessing Game for Linux with bundled JRE..."
+echo "Building Number Guessing Game for macOS with bundled JRE..."
 
 # Configuration
-PACKAGE_NAME="NumberGuessingGame-linux"
-JRE_DIR="jre-linux"
-ADOPTIUM_BASE_URL="https://api.adoptium.net/v3/binary/latest/21/ga"
+PACKAGE_NAME="NumberGuessingGame-macos"
+JRE_DIR="jre-macos"
+ADOPTIUM_BASE_URL="https://api.adoptium.net/v3/binary/latest/25/ga"
 
 # Clean up previous builds
 rm -rf ${PACKAGE_NAME}
 rm -rf ${JRE_DIR}
-rm -f ${PACKAGE_NAME}.tar.gz
+rm -f ${PACKAGE_NAME}.zip
 
 # Build the application
 echo "Building application..."
 ./gradlew build
 
-# Download JRE for Linux
-echo "Downloading JRE for Linux..."
+# Download JRE for macOS
+echo "Downloading JRE for macOS..."
 mkdir -p ${JRE_DIR}
-curl -L "${ADOPTIUM_BASE_URL}/linux/x64/jre/hotspot/normal/eclipse?project=jdk" -o ${JRE_DIR}/jre-linux.tar.gz
+curl -L "${ADOPTIUM_BASE_URL}/mac/x64/jre/hotspot/normal/eclipse?project=jdk" -o ${JRE_DIR}/jre-macos.tar.gz
 
 # Extract JRE
 echo "Extracting JRE..."
 cd ${JRE_DIR}
-tar -xzf jre-linux.tar.gz
+tar -xzf jre-macos.tar.gz
 JRE_EXTRACTED=$(ls -d jdk* 2>/dev/null || ls -d jre* 2>/dev/null)
 cd ..
 
@@ -49,19 +49,19 @@ cat > ${PACKAGE_NAME}/run.sh << 'EOF'
 # Get the directory where the script is located
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-"${SCRIPT_DIR}/jre/bin/java" -jar "${SCRIPT_DIR}/game.jar"
+"${SCRIPT_DIR}/jre/Contents/Home/bin/java" -jar "${SCRIPT_DIR}/game.jar"
 EOF
 
 chmod +x ${PACKAGE_NAME}/run.sh
 
-# Create the tar.gz archive
-echo "Creating tar.gz archive..."
-tar -czf ${PACKAGE_NAME}.tar.gz ${PACKAGE_NAME}/
+# Create the zip archive
+echo "Creating zip archive..."
+zip -r ${PACKAGE_NAME}.zip ${PACKAGE_NAME}/
 
 # Clean up
 rm -rf ${PACKAGE_NAME}
 rm -rf ${JRE_DIR}
 
 echo ""
-echo "✓ Linux package with bundled JRE created: ${PACKAGE_NAME}.tar.gz"
+echo "✓ macOS package with bundled JRE created: ${PACKAGE_NAME}.zip"
 echo ""

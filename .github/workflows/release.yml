@@ -30,16 +30,16 @@ jobs:
         run: ./package-deb.sh
 
       - name: Build ZIP archive
-        run: ./package.sh
+        run: ./package-zip.sh
 
       - name: Build Windows package with bundled JRE
-        run: ./package-jre-windows.sh
+        run: ./package-win.sh
 
       - name: Build macOS package with bundled JRE
-        run: ./package-jre-macos.sh
+        run: ./package-macos.sh
 
       - name: Build Linux package with bundled JRE
-        run: ./package-jre-linux.sh
+        run: ./package-linux.sh
 
       - name: Upload release assets
         uses: softprops/action-gh-release@v2
