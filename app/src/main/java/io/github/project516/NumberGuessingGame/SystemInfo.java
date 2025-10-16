@@ -11,7 +11,7 @@ public class SystemInfo {
      *
      * @return the JVM vendor name
      */
-    String vendor() {
+    public String vendor() {
         return System.getProperty("java.vm.vendor");
     }
 
@@ -20,7 +20,7 @@ public class SystemInfo {
      *
      * @return the JVM name
      */
-    String name() {
+    public String name() {
         return System.getProperty("java.vm.name");
     }
 
@@ -29,7 +29,7 @@ public class SystemInfo {
      *
      * @return the JVM version
      */
-    String version() {
+    public String version() {
         return System.getProperty("java.vm.version");
     }
 }
