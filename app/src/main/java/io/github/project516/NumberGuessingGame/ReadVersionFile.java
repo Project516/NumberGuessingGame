@@ -17,7 +17,7 @@ public class ReadVersionFile {
      */
     public String readVersion() {
         String filePath = "version.txt";
-        String content = "rolling"; // Placeholder version
+        String content = "0.0.9"; // Placeholder version
         try {
             content = new String(Files.readAllBytes(Paths.get(filePath)));
         } catch (IOException e) {
