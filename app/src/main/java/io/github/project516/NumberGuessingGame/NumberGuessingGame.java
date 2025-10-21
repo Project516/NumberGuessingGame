@@ -6,6 +6,7 @@ public class NumberGuessingGame {
         DebugInfo debugInfo = new DebugInfo();
         GameInfo gameInfo = new GameInfo();
         GameLogic logic = new GameLogic();
+        CheckGuess check = new CheckGuess();
 
         debugInfo.launchDebug();
         gameInfo.about();
@@ -25,13 +26,10 @@ public class NumberGuessingGame {
                 System.out.print("\nPlay again? (1 -> Y / 0 -> N) ");
                 try {
                     play = scan.userGuess();
-                    if (play == 0) {
-                        break;
-                    } else if (play != 1) {
-                        throw new IllegalArgumentException("");
-                    }
+                    check.quit(play);
                 } catch (Exception e) {
-                    System.out.println("Error reading input!");
+                    debugInfo.gameCrash();
+                    e.printStackTrace();
                     break;
                 }
             }
