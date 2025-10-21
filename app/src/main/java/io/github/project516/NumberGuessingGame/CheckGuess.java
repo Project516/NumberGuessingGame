@@ -16,4 +16,12 @@ public class CheckGuess {
             throw new IllegalArgumentException("Invalid number!");
         }
     }
+
+    void quit(int input) {
+        // 0 is quit
+        // 1 is continue
+        if (input != 0 || input != 1) {
+            throw new IllegalArgumentException("Invalid number!");
+        }
+    }
 }
