@@ -5,6 +5,7 @@ A simple number guessing game where you try to guess a randomly generated number
 **Features:**
 - Swing-based GUI (default)
 - Console mode (use `--console` flag)
+- Web browser version (available on GitHub Pages)
 - Cross-platform
 
 ## Installation & Running
@@ -59,7 +60,7 @@ Download the `archive.zip` from the [latest release](https://github.com/project5
 
 #### Requirements
 
-- Java 8 or higher (may require Java 17+ in future versions)
+- Java 11 or higher
 
 #### How to Run
 
