@@ -15,10 +15,8 @@ public class Username {
      * @return the validated username
      */
     public static String promptUsername(ScannerHelper scan) {
-        // Clear any remaining input buffer
-        if (scan.scan.hasNextLine()) {
-            scan.scan.nextLine();
-        }
+        // Clear any remaining newline from previous nextInt() call
+        scan.scan.nextLine();
 
         while (true) {
             System.out.print("Enter your username: ");
