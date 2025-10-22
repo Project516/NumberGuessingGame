@@ -33,7 +33,7 @@ public class GUI {
      * @param args command line arguments (not used)
      */
     public static void main(String[] args) { // Test GUI
-        GUI GUI = new GUI();
-        GUI.createWindow();
+        GUI gui = new GUI();
+        gui.createWindow();
     }
 }
