@@ -1,6 +1,14 @@
 # Number Guessing Game
 
-A simple number guessing game where you try to guess a randomly generated number. The game will tell you if your guess is too high or too low until you find the correct number.
+A simple number guessing game where you try to guess a randomly generated number. The game features both a user-friendly graphical interface (GUI) and a classic console mode. The GUI provides visual feedback with color-coded hints and tracks your progress in real-time.
+
+**Features:**
+- 🎮 Modern Swing-based GUI (default)
+- 💻 Classic console mode (use `--console` flag)
+- 🎯 Visual feedback with color coding
+- 📊 Real-time guess counter
+- ⌨️ Keyboard shortcuts for quick navigation
+- 🌍 Cross-platform compatible (Windows, macOS, Linux)
 
 ## Installation & Running
 
@@ -66,11 +74,40 @@ Run `run.sh`
 
 ### How to Play
 
+The game now features both a graphical user interface (GUI) and a console mode.
+
+#### GUI Mode (Default)
+
 1. Start the game using one of the methods above
-2. Enter your guess when prompted
-3. The game will tell you if your guess is too high or too low
-4. Keep guessing until you find the correct number
-5. The game will display how many guesses it took you
+2. A window will appear with the game interface
+3. Enter your guess in the text field and click "Submit Guess" or press Enter
+4. The game will provide visual feedback:
+   - Blue text indicates your guess was too low
+   - Orange text indicates your guess was too high
+   - Green text indicates you guessed correctly!
+5. The number of guesses is displayed and updated in real-time
+6. When you guess correctly, click "New Game" to play again
+7. Use the menu bar for additional options:
+   - File → New Game (Ctrl+N): Start a new game
+   - File → Exit: Close the application
+   - Help → About: View game information
+
+#### Console Mode
+
+To run the classic console version, use the `--console` or `-c` flag:
+
+```bash
+java -jar app.jar --console
+# or
+./run.sh --console  # Linux/Mac
+run.bat --console   # Windows
+```
+
+In console mode:
+1. Enter your guess when prompted
+2. The game will tell you if your guess is too high or too low
+3. Keep guessing until you find the correct number
+4. The game will display how many guesses it took you
 
 ## Development
 
