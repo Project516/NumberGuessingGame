@@ -1,3 +1,13 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        // TeaVM tooling for JavaScript compilation task
+        classpath 'org.teavm:teavm-tooling:0.10.2'
+    }
+}
+
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
@@ -11,9 +21,20 @@ repositories {
     mavenCentral()
 }
 
+// Separate configuration for TeaVM compiler (not part of application runtime)
+configurations {
+    teavm
+}
+
 dependencies {
     // This dependency is used by the application.
     implementation libs.guava
+    
+    // TeaVM dependencies for JavaScript compilation (only for build, not runtime)
+    teavm 'org.teavm:teavm-core:0.10.2'
+    teavm 'org.teavm:teavm-tooling:0.10.2'
+    teavm 'org.teavm:teavm-classlib:0.10.2'
+    teavm 'org.teavm:teavm-jso-apis:0.10.2'
 }
 
 testing {
@@ -59,5 +80,55 @@ jar {
         attributes(
             'Main-Class': 'io.github.project516.NumberGuessingGame.Main'
         )
+    }
+}
+
+// TeaVM task for compiling Java GUI to JavaScript
+task generateTeaVM {
+    group = 'build'
+    description = 'Compiles Java GUI application to JavaScript using TeaVM'
+    
+    dependsOn classes
+    
+    // Define outputs for up-to-date checking
+    outputs.dir(layout.buildDirectory.dir('teavm'))
+    
+    doLast {
+        // Create output directory
+        def outputDir = layout.buildDirectory.dir('teavm').get().asFile
+        outputDir.mkdirs()
+        
+        // Get TeaVM classpath
+        def teavmClasspath = configurations.teavm.files.collect { it.toURI().toURL() } as URL[]
+        def appClasspath = (sourceSets.main.runtimeClasspath.files + sourceSets.main.output.classesDirs.files)
+            .collect { it.toURI().toURL() } as URL[]
+        
+        // Combined classloader with TeaVM and application classes
+        def combinedLoader = new URLClassLoader(
+            teavmClasspath + appClasspath,
+            ClassLoader.getSystemClassLoader()
+        )
+        
+        // Configure TeaVM
+        def toolingClass = combinedLoader.loadClass('org.teavm.tooling.TeaVMTool')
+        def targetTypeClass = combinedLoader.loadClass('org.teavm.tooling.TeaVMTargetType')
+        def tooling = toolingClass.getDeclaredConstructor().newInstance()
+        
+        tooling.targetDirectory = outputDir
+        // Use GUI as main class - TeaVM will compile what it can
+        tooling.mainClass = 'io.github.project516.NumberGuessingGame.GUI'
+        
+        // Application classloader for TeaVM to analyze
+        def appLoader = new URLClassLoader(appClasspath as URL[], (ClassLoader) null)
+        tooling.classLoader = appLoader
+        
+        // Configuration options
+        tooling.targetType = targetTypeClass.JAVASCRIPT
+        tooling.debugInformationGenerated = true
+        
+        // Generate JavaScript
+        tooling.generate()
+        
+        println "TeaVM compilation completed. Output: ${outputDir}"
     }
 }
