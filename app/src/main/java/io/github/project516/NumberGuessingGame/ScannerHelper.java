@@ -29,6 +29,10 @@ public class ScannerHelper {
         return scan.nextLine();
     }
 
+    void next() {
+        scan.next();
+    }
+
     /**
      * Closes the Scanner to release system resources. Should be called when the Scanner is no
      * longer needed.

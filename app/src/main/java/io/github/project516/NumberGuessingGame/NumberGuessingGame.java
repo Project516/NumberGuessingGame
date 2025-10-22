@@ -22,6 +22,7 @@ public class NumberGuessingGame {
 
                     System.err.println("\n===Program Crashed!===");
                     System.err.println("Error: " + e.getMessage());
+                    scan.next();
                     e.printStackTrace();
 
                 } finally {
@@ -32,12 +33,13 @@ public class NumberGuessingGame {
                     } catch (Exception e) {
                         System.err.println("\n===Program Crashed!===");
                         System.err.println("Error: " + e.getMessage());
+                        scan.next();
                         e.printStackTrace();
                         break;
                     }
                 }
             }
-            System.out.println("\nThank you for playing!");
+            System.out.println("\nThanks for playing!");
         } finally {
             scan.close();
         }

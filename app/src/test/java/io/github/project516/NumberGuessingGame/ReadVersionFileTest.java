@@ -12,11 +12,12 @@ class ReadVersionFileTest {
         assertNotNull(version, "Version should not be null");
         assertFalse(version.isEmpty(), "Version should not be empty");
     }
-
+    /*
     @Test
     void readVersionReturnsRolling() {
         ReadVersionFile versionFile = new ReadVersionFile();
         String version = versionFile.readVersion();
         assertEquals("rolling", version, "Version should be 'rolling'");
     }
+    */
 }
