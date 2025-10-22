@@ -24,7 +24,7 @@ jobs:
       - name: Generate JavaDoc
         run: ./gradlew javadoc
       
-      -name: Copy Cheerpj
+      - name: Copy Cheerpj
         run: ./cheerpj.sh
 
       - name: Deploy to GitHub Pages
