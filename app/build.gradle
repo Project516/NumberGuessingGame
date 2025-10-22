@@ -1,29 +1,17 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        // TeaVM tooling for JavaScript compilation task
-        classpath 'org.teavm:teavm-tooling:0.10.2'
-    }
-}
-
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
 
     //Spotless
     id 'com.diffplug.spotless' version '8.0.0'
+    
+    // TeaVM plugin for JavaScript compilation
+    id 'io.github.zebalu.teavm-gradle-plugin' version '1.0.0'
 }
 
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
-}
-
-// Separate configuration for TeaVM compiler (not part of application runtime)
-configurations {
-    teavm
 }
 
 dependencies {
@@ -32,12 +20,6 @@ dependencies {
     
     // TeaVM JSO APIs for web development (needed at compile time for WebGUI)
     compileOnly 'org.teavm:teavm-jso-apis:0.10.2'
-    
-    // TeaVM dependencies for JavaScript compilation (only for build, not runtime)
-    teavm 'org.teavm:teavm-core:0.10.2'
-    teavm 'org.teavm:teavm-tooling:0.10.2'
-    teavm 'org.teavm:teavm-classlib:0.10.2'
-    teavm 'org.teavm:teavm-jso-apis:0.10.2'
 }
 
 testing {
@@ -87,90 +69,8 @@ jar {
     }
 }
 
-// TeaVM task for compiling Java GUI to JavaScript
-task generateTeaVM {
-    group = 'build'
-    description = 'Compiles Java GUI application to JavaScript using TeaVM'
-    
-    dependsOn classes
-    
-    // Define outputs for up-to-date checking
-    outputs.dir(layout.buildDirectory.dir('teavm'))
-    
-    doLast {
-        // Create output directory
-        def outputDir = layout.buildDirectory.dir('teavm').get().asFile
-        outputDir.mkdirs()
-        
-        // Get TeaVM classpath
-        def teavmClasspath = configurations.teavm.files.collect { it.toURI().toURL() } as URL[]
-        def appClasspath = (sourceSets.main.runtimeClasspath.files + sourceSets.main.output.classesDirs.files)
-            .collect { it.toURI().toURL() } as URL[]
-        
-        // Combined classloader with TeaVM and application classes
-        def combinedLoader = new URLClassLoader(
-            teavmClasspath + appClasspath,
-            ClassLoader.getSystemClassLoader()
-        )
-        
-        // Configure TeaVM
-        def toolingClass = combinedLoader.loadClass('org.teavm.tooling.TeaVMTool')
-        def targetTypeClass = combinedLoader.loadClass('org.teavm.tooling.TeaVMTargetType')
-        def tooling = toolingClass.getDeclaredConstructor().newInstance()
-        
-        tooling.targetDirectory = outputDir
-        // Use SimpleTest as main class for testing
-        tooling.mainClass = 'io.github.project516.NumberGuessingGame.SimpleTest'
-        tooling.entryPointName = 'main'
-        
-        // Application classloader for TeaVM to analyze
-        def appLoader = new URLClassLoader(appClasspath as URL[], (ClassLoader) null)
-        tooling.classLoader = appLoader
-        
-        // Configuration options
-        tooling.targetType = targetTypeClass.JAVASCRIPT
-        tooling.debugInformationGenerated = true
-        tooling.targetFileName = 'classes.js'
-        
-        // Enable logging
-        def logClass = combinedLoader.loadClass('org.teavm.tooling.ConsoleTeaVMToolLog')
-        tooling.log = logClass.getDeclaredConstructor(boolean.class).newInstance(true)
-        
-        // Print classpath for debugging
-        println "Classpath URLs:"
-        appClasspath.each { url -> println "  - ${url}" }
-        
-        // Generate JavaScript
-        println "Starting TeaVM generation..."
-        println "Main class: ${tooling.mainClass}"
-        println "Output directory: ${outputDir}"
-        
-        try {
-            tooling.generate()
-            println "TeaVM generation completed"
-            
-            // Try to check for problems if the API supports it
-            try {
-                def problemProvider = tooling.problemProvider
-                if (problemProvider != null && problemProvider.problems) {
-                    problemProvider.problems.each { problem ->
-                        println "  ${problem.severity}: ${problem.text}"
-                    }
-                }
-            } catch (Exception e) {
-                // Problems API might not be available
-                println "Could not check for problems: ${e.message}"
-            }
-        } catch (Exception e) {
-            println "TeaVM generation failed: ${e.message}"
-            e.printStackTrace()
-            throw e
-        }
-        
-        // List generated files
-        println "Generated files:"
-        outputDir.listFiles().each { file ->
-            println "  - ${file.name} (${file.length()} bytes)"
-        }
-    }
+// TeaVM configuration for compiling Java GUI to JavaScript
+teavm {
+    // Main class to compile  
+    mainClass = 'io.github.project516.NumberGuessingGame.WebGUI'
 }
