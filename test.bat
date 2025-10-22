@@ -1,3 +1,5 @@
 @echo off
 
-java -jar app/build/libs/app.jar
+java -jar app/build/libs/app.jar --console
+
+@pause
