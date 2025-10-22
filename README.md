@@ -3,12 +3,9 @@
 A simple number guessing game where you try to guess a randomly generated number. The game features both a user-friendly graphical interface (GUI) and a classic console mode. The GUI provides visual feedback with color-coded hints and tracks your progress in real-time.
 
 **Features:**
-- 🎮 Modern Swing-based GUI (default)
-- 💻 Classic console mode (use `--console` flag)
-- 🎯 Visual feedback with color coding
-- 📊 Real-time guess counter
-- ⌨️ Keyboard shortcuts for quick navigation
-- 🌍 Cross-platform compatible (Windows, macOS, Linux)
+- Swing-based GUI (default)
+- Console mode (use `--console` flag)
+- Cross-platform
 
 ## Installation & Running
 
