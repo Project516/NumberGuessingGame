@@ -8,31 +8,40 @@ public class NumberGuessingGame {
         GameLogic logic = new GameLogic();
         CheckGuess check = new CheckGuess();
 
-        debugInfo.launchDebug();
-        gameInfo.about();
-        int play = 1;
-        while (play != 0) {
+        try {
+            debugInfo.launchDebug();
+            gameInfo.about();
+            int play = 1;
+            while (play != 0) {
 
-            try {
-
-                logic.game();
-
-            } catch (Exception e) {
-
-                debugInfo.gameCrash();
-                e.printStackTrace();
-
-            } finally {
-                System.out.print("\nPlay again? (1 -> Y / 0 -> N) ");
                 try {
-                    play = scan.userGuess();
-                    check.quit(play);
+
+                    logic.game(scan);
+
                 } catch (Exception e) {
-                    debugInfo.gameCrash();
+
+                    System.err.println("\n===Program Crashed!===");
+                    System.err.println("Error: " + e.getMessage());
+                    scan.next();
                     e.printStackTrace();
-                    break;
+
+                } finally {
+                    System.out.print("\nPlay again? (1 -> Y / 0 -> N) ");
+                    try {
+                        play = scan.userGuess();
+                        check.quit(play);
+                    } catch (Exception e) {
+                        System.err.println("\n===Program Crashed!===");
+                        System.err.println("Error: " + e.getMessage());
+                        scan.next();
+                        e.printStackTrace();
+                        break;
+                    }
                 }
             }
+            System.out.println("\nThanks for playing!");
+        } finally {
+            scan.close();
         }
     }
 }
