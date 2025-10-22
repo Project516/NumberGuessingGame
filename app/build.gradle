@@ -30,6 +30,9 @@ dependencies {
     // This dependency is used by the application.
     implementation libs.guava
     
+    // TeaVM JSO APIs for web development (needed at compile time for WebGUI)
+    compileOnly 'org.teavm:teavm-jso-apis:0.10.2'
+    
     // TeaVM dependencies for JavaScript compilation (only for build, not runtime)
     teavm 'org.teavm:teavm-core:0.10.2'
     teavm 'org.teavm:teavm-tooling:0.10.2'
@@ -56,7 +59,8 @@ java {
 }
 
 tasks.withType(JavaCompile) {
-    options.release.set(8)
+    // Changed from 8 to 11 to support TeaVM for web deployment
+    options.release.set(11)
 }
 
 application {
@@ -115,8 +119,9 @@ task generateTeaVM {
         def tooling = toolingClass.getDeclaredConstructor().newInstance()
         
         tooling.targetDirectory = outputDir
-        // Use GUI as main class - TeaVM will compile what it can
-        tooling.mainClass = 'io.github.project516.NumberGuessingGame.GUI'
+        // Use SimpleTest as main class for testing
+        tooling.mainClass = 'io.github.project516.NumberGuessingGame.SimpleTest'
+        tooling.entryPointName = 'main'
         
         // Application classloader for TeaVM to analyze
         def appLoader = new URLClassLoader(appClasspath as URL[], (ClassLoader) null)
@@ -125,10 +130,47 @@ task generateTeaVM {
         // Configuration options
         tooling.targetType = targetTypeClass.JAVASCRIPT
         tooling.debugInformationGenerated = true
+        tooling.targetFileName = 'classes.js'
+        
+        // Enable logging
+        def logClass = combinedLoader.loadClass('org.teavm.tooling.ConsoleTeaVMToolLog')
+        tooling.log = logClass.getDeclaredConstructor(boolean.class).newInstance(true)
+        
+        // Print classpath for debugging
+        println "Classpath URLs:"
+        appClasspath.each { url -> println "  - ${url}" }
         
         // Generate JavaScript
-        tooling.generate()
+        println "Starting TeaVM generation..."
+        println "Main class: ${tooling.mainClass}"
+        println "Output directory: ${outputDir}"
         
-        println "TeaVM compilation completed. Output: ${outputDir}"
+        try {
+            tooling.generate()
+            println "TeaVM generation completed"
+            
+            // Try to check for problems if the API supports it
+            try {
+                def problemProvider = tooling.problemProvider
+                if (problemProvider != null && problemProvider.problems) {
+                    problemProvider.problems.each { problem ->
+                        println "  ${problem.severity}: ${problem.text}"
+                    }
+                }
+            } catch (Exception e) {
+                // Problems API might not be available
+                println "Could not check for problems: ${e.message}"
+            }
+        } catch (Exception e) {
+            println "TeaVM generation failed: ${e.message}"
+            e.printStackTrace()
+            throw e
+        }
+        
+        // List generated files
+        println "Generated files:"
+        outputDir.listFiles().each { file ->
+            println "  - ${file.name} (${file.length()} bytes)"
+        }
     }
 }
