@@ -1,6 +1,16 @@
 package io.github.project516.NumberGuessingGame;
 
+/**
+ * Console-based Number Guessing Game implementation. This class manages the console version of the
+ * game, handling the game loop, user interaction, and error recovery. It prompts the user to guess
+ * numbers and allows replaying the game.
+ */
 public class NumberGuessingGame {
+    /**
+     * Runs the console version of the Number Guessing Game. Initializes all game components,
+     * displays debug information, and manages the game loop. The user can play multiple rounds
+     * until they choose to quit.
+     */
     void run() {
         ScannerHelper scan = new ScannerHelper();
         DebugInfo debugInfo = new DebugInfo();

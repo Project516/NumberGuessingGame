@@ -29,6 +29,10 @@ public class ScannerHelper {
         return scan.nextLine();
     }
 
+    /**
+     * Consumes the next token from the input stream. Used primarily for clearing invalid input
+     * after an exception occurs.
+     */
     void next() {
         scan.next();
     }
