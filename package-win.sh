@@ -1,6 +1,9 @@
 #!/bin/sh
 # Script to create a Windows package with bundled JRE for Number Guessing Game
+# This creates a self-contained package that doesn't require Java to be installed
+# Output: NumberGuessingGame-windows.zip
 
+# Exit immediately if any command fails
 set -e
 
 echo "Building Number Guessing Game for Windows with bundled JRE..."
@@ -10,21 +13,21 @@ PACKAGE_NAME="NumberGuessingGame-windows"
 JRE_DIR="jre-windows"
 ADOPTIUM_BASE_URL="https://api.adoptium.net/v3/binary/latest/25/ga"
 
-# Clean up previous builds
+# Clean up any previous builds
 rm -rf ${PACKAGE_NAME}
 rm -rf ${JRE_DIR}
 rm -f ${PACKAGE_NAME}.zip
 
-# Build the application
+# Build the application using Gradle
 echo "Building application..."
 ./gradlew build
 
-# Download JRE for Windows
+# Download JRE for Windows from Eclipse Adoptium
 echo "Downloading JRE for Windows..."
 mkdir -p ${JRE_DIR}
 curl -L "${ADOPTIUM_BASE_URL}/windows/x64/jre/hotspot/normal/eclipse?project=jdk" -o ${JRE_DIR}/jre-windows.zip
 
-# Extract JRE
+# Extract the downloaded JRE
 echo "Extracting JRE..."
 cd ${JRE_DIR}
 unzip -q jre-windows.zip
@@ -38,11 +41,11 @@ cp app/build/libs/app.jar ${PACKAGE_NAME}/game.jar
 cp README.md ${PACKAGE_NAME}/README.txt
 cp LICENSE ${PACKAGE_NAME}/LICENSE
 
-# Copy JRE into package
+# Copy the JRE into the package
 echo "Copying JRE into package..."
 cp -r ${JRE_DIR}/${JRE_EXTRACTED} ${PACKAGE_NAME}/jre
 
-# Create run.bat that uses bundled JRE
+# Create a Windows batch file that uses the bundled JRE
 cat > ${PACKAGE_NAME}/run.bat << 'EOF'
 @echo off
 
@@ -51,11 +54,11 @@ jre\bin\java.exe -jar game.jar
 @pause
 EOF
 
-# Create the zip archive
+# Create the final zip archive
 echo "Creating zip archive..."
 zip -r ${PACKAGE_NAME}.zip ${PACKAGE_NAME}/
 
-# Clean up
+# Clean up temporary directories
 rm -rf ${PACKAGE_NAME}
 rm -rf ${JRE_DIR}
 
