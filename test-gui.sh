@@ -1,5 +1,4 @@
 #!/bin/sh
 
-cd app
-gradle build
-java -jar build/libs/app.jar
+./gradlew build
+java -jar app/build/libs/app.jar

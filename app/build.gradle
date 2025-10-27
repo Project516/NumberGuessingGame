@@ -4,6 +4,9 @@ plugins {
 
     //Spotless
     id 'com.diffplug.spotless' version '8.0.0'
+    
+    // TeaVM plugin for JavaScript compilation
+    id 'io.github.zebalu.teavm-gradle-plugin' version '1.0.0'
 }
 
 repositories {
@@ -14,6 +17,9 @@ repositories {
 dependencies {
     // This dependency is used by the application.
     implementation libs.guava
+    
+    // TeaVM JSO APIs for web development (needed at compile time for WebGUI)
+    compileOnly 'org.teavm:teavm-jso-apis:0.10.2'
 }
 
 testing {
@@ -35,7 +41,10 @@ java {
 }
 
 tasks.withType(JavaCompile) {
-    options.release.set(8)
+    // Changed from 8 to 11 to support TeaVM for web deployment.
+    // TeaVM 0.10.2+ requires Java 11 as minimum target.
+    // This change affects the minimum JRE required to run the JAR.
+    options.release.set(11)
 }
 
 application {
@@ -60,4 +69,10 @@ jar {
             'Main-Class': 'io.github.project516.NumberGuessingGame.Main'
         )
     }
+}
+
+// TeaVM configuration for compiling Java GUI to JavaScript
+teavm {
+    // Main class to compile  
+    mainClass = 'io.github.project516.NumberGuessingGame.WebGUI'
 }

@@ -16,6 +16,7 @@ public class GUI extends JFrame {
     private RandomNumber randomGenerator;
     private CheckGuess guessChecker;
     private GameInfo gameInfo;
+    private HighScoreManager highScoreManager;
 
     // UI Components
     private JTextField guessField;
@@ -37,6 +38,15 @@ public class GUI extends JFrame {
         randomGenerator = new RandomNumber();
         guessChecker = new CheckGuess();
         gameInfo = new GameInfo();
+
+        // Initialize high score manager
+        try {
+            highScoreManager = new HighScoreManager();
+        } catch (Exception e) {
+            System.err.println(
+                    "Warning: Could not initialize high score system: " + e.getMessage());
+            highScoreManager = null;
+        }
 
         // Set up the frame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,6 +86,14 @@ public class GUI extends JFrame {
         exitItem.addActionListener(e -> System.exit(0));
         fileMenu.add(exitItem);
 
+        // View menu
+        JMenu viewMenu = new JMenu("View");
+        viewMenu.setMnemonic(KeyEvent.VK_V);
+
+        JMenuItem highScoresItem = new JMenuItem("High Scores", KeyEvent.VK_H);
+        highScoresItem.addActionListener(e -> showHighScores());
+        viewMenu.add(highScoresItem);
+
         // Help menu
         JMenu helpMenu = new JMenu("Help");
         helpMenu.setMnemonic(KeyEvent.VK_H);
@@ -85,6 +103,7 @@ public class GUI extends JFrame {
         helpMenu.add(aboutItem);
 
         menuBar.add(fileMenu);
+        menuBar.add(viewMenu);
         menuBar.add(helpMenu);
 
         setJMenuBar(menuBar);
@@ -223,13 +242,8 @@ public class GUI extends JFrame {
             newGameButton.setVisible(true);
             newGameButton.requestFocus();
 
-            // Show congratulations dialog
-            String message =
-                    String.format(
-                            "You guessed the number in %d %s!",
-                            numberOfGuesses, numberOfGuesses == 1 ? "guess" : "guesses");
-            JOptionPane.showMessageDialog(
-                    this, message, "Congratulations!", JOptionPane.INFORMATION_MESSAGE);
+            // Handle high score
+            handleHighScore();
         }
 
         guessField.setText("");
@@ -268,6 +282,63 @@ public class GUI extends JFrame {
 
         JOptionPane.showMessageDialog(
                 this, message, "About Number Guessing Game", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    /**
+     * Handles high score submission after a successful game. Prompts the user for their username
+     * and saves the score if applicable.
+     */
+    private void handleHighScore() {
+        if (highScoreManager == null) {
+            // Show basic congratulations dialog if high score system is unavailable
+            String message =
+                    String.format(
+                            "You guessed the number in %d %s!",
+                            numberOfGuesses, numberOfGuesses == 1 ? "guess" : "guesses");
+            JOptionPane.showMessageDialog(
+                    this, message, "Congratulations!", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        // Prompt for username
+        String username =
+                JOptionPane.showInputDialog(
+                        this,
+                        String.format(
+                                "You guessed the number in %d %s!\n\nEnter your username (1-20 characters):",
+                                numberOfGuesses, numberOfGuesses == 1 ? "guess" : "guesses"),
+                        "Congratulations!",
+                        JOptionPane.QUESTION_MESSAGE);
+
+        // Validate username
+        if (username != null && Username.isValid(username)) {
+            highScoreManager.addHighScore(username, numberOfGuesses);
+            showHighScores();
+        } else if (username != null) {
+            JOptionPane.showMessageDialog(
+                    this, "Invalid username. Score not saved.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    /** Displays the top high scores in a dialog. */
+    private void showHighScores() {
+        if (highScoreManager == null) {
+            return;
+        }
+
+        java.util.List<HighScore> topScores = highScoreManager.getTopHighScores(10);
+        if (topScores.isEmpty()) {
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("Top High Scores\n\n");
+        for (int i = 0; i < topScores.size(); i++) {
+            sb.append(String.format("%d. %s\n", i + 1, topScores.get(i)));
+        }
+
+        JOptionPane.showMessageDialog(
+                this, sb.toString(), "High Scores", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
