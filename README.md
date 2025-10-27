@@ -6,6 +6,8 @@ A simple number guessing game where you try to guess a randomly generated number
 - Swing-based GUI (default)
 - Console mode (use `--console` flag)
 - Web browser version (available on GitHub Pages)
+- High score tracking with usernames
+- Persistent score storage
 - Cross-platform
 
 ## Installation & Running
@@ -84,10 +86,13 @@ The game now features both a graphical user interface (GUI) and a console mode.
    - Orange text indicates your guess was too high
    - Green text indicates you guessed correctly!
 5. The number of guesses is displayed and updated in real-time
-6. When you guess correctly, click "New Game" to play again
-7. Use the menu bar for additional options:
+6. When you guess correctly, you'll be prompted to enter your username
+7. After entering your username, your score will be saved and the top high scores will be displayed
+8. Click "New Game" to play again
+9. Use the menu bar for additional options:
    - File → New Game (Ctrl+N): Start a new game
    - File → Exit: Close the application
+   - View → High Scores: View the top high scores
    - Help → About: View game information
 
 #### Console Mode
@@ -106,6 +111,18 @@ In console mode:
 2. The game will tell you if your guess is too high or too low
 3. Keep guessing until you find the correct number
 4. The game will display how many guesses it took you
+5. Enter your username when prompted to save your score
+6. The top high scores will be displayed after saving your score
+
+### High Scores
+
+The game automatically tracks high scores (games won with the fewest guesses). High scores are stored persistently in your home directory at `~/.numberguessinggame/highscores.properties`.
+
+- The top 10 scores are kept
+- Scores are sorted by the number of guesses (fewest is best)
+- Each score includes the username and number of guesses
+- High scores persist across game sessions
+- View high scores from the GUI menu (View → High Scores) or after completing a game
 
 ## Development
 
