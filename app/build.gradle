@@ -19,7 +19,7 @@ dependencies {
     implementation libs.guava
     
     // TeaVM JSO APIs for web development (needed at compile time for WebGUI)
-    compileOnly 'org.teavm:teavm-jso-apis:0.10.2'
+    compileOnly 'org.teavm:teavm-jso-apis:0.12.3'
 }
 
 testing {
