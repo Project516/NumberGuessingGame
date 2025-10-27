@@ -45,8 +45,7 @@ cp LICENSE ${PACKAGE_NAME}/LICENSE
 echo "Copying JRE into package..."
 cp -r ${JRE_DIR}/${JRE_EXTRACTED} ${PACKAGE_NAME}/jre
 
-# Create a shell script that uses the bundled JRE
-# Note: macOS JRE has a different directory structure (Contents/Home)
+# Create a shell script that uses the bundled JRE (macOS JRE structure: Contents/Home)
 cat > ${PACKAGE_NAME}/run.sh << 'EOF'
 #!/bin/sh
 
