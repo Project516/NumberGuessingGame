@@ -1,6 +1,9 @@
 #!/bin/sh
 # Script to create a Linux package with bundled JRE for Number Guessing Game
+# This creates a self-contained package that doesn't require Java to be installed
+# Output: NumberGuessingGame-linux.tar.gz
 
+# Exit immediately if any command fails
 set -e
 
 echo "Building Number Guessing Game for Linux with bundled JRE..."
@@ -10,21 +13,21 @@ PACKAGE_NAME="NumberGuessingGame-linux"
 JRE_DIR="jre-linux"
 ADOPTIUM_BASE_URL="https://api.adoptium.net/v3/binary/latest/25/ga"
 
-# Clean up previous builds
+# Clean up any previous builds
 rm -rf ${PACKAGE_NAME}
 rm -rf ${JRE_DIR}
 rm -f ${PACKAGE_NAME}.tar.gz
 
-# Build the application
+# Build the application using Gradle
 echo "Building application..."
 ./gradlew build
 
-# Download JRE for Linux
+# Download JRE for Linux from Eclipse Adoptium
 echo "Downloading JRE for Linux..."
 mkdir -p ${JRE_DIR}
 curl -L "${ADOPTIUM_BASE_URL}/linux/x64/jre/hotspot/normal/eclipse?project=jdk" -o ${JRE_DIR}/jre-linux.tar.gz
 
-# Extract JRE
+# Extract the downloaded JRE
 echo "Extracting JRE..."
 cd ${JRE_DIR}
 tar -xzf jre-linux.tar.gz
@@ -38,11 +41,11 @@ cp app/build/libs/app.jar ${PACKAGE_NAME}/game.jar
 cp README.md ${PACKAGE_NAME}/README.txt
 cp LICENSE ${PACKAGE_NAME}/LICENSE
 
-# Copy JRE into package
+# Copy the JRE into the package
 echo "Copying JRE into package..."
 cp -r ${JRE_DIR}/${JRE_EXTRACTED} ${PACKAGE_NAME}/jre
 
-# Create run.sh that uses bundled JRE
+# Create a shell script that uses the bundled JRE
 cat > ${PACKAGE_NAME}/run.sh << 'EOF'
 #!/bin/sh
 
@@ -52,13 +55,14 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 "${SCRIPT_DIR}/jre/bin/java" -jar "${SCRIPT_DIR}/game.jar"
 EOF
 
+# Make the run script executable
 chmod +x ${PACKAGE_NAME}/run.sh
 
-# Create the tar.gz archive
+# Create the final tar.gz archive
 echo "Creating tar.gz archive..."
 tar -czf ${PACKAGE_NAME}.tar.gz ${PACKAGE_NAME}/
 
-# Clean up
+# Clean up temporary directories
 rm -rf ${PACKAGE_NAME}
 rm -rf ${JRE_DIR}
 
