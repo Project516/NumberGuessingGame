@@ -27,7 +27,7 @@ testing {
         // Configure the built-in test suite
         test {
             // Use JUnit Jupiter test framework
-            useJUnitJupiter('5.14.0')
+            useJUnitJupiter('6.0.0')
         }
     }
 }
@@ -44,7 +44,7 @@ tasks.withType(JavaCompile) {
     // Changed from 8 to 11 to support TeaVM for web deployment.
     // TeaVM 0.10.2+ requires Java 11 as minimum target.
     // This change affects the minimum JRE required to run the JAR.
-    options.release.set(11)
+    options.release.set(17)
 }
 
 application {

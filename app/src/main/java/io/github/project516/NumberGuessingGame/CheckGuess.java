@@ -17,6 +17,12 @@ public class CheckGuess {
         }
     }
 
+    /**
+     * Validates the user's response to the "play again" prompt.
+     *
+     * @param input the user's input (0 to quit, 1 to continue)
+     * @throws IllegalArgumentException if the input is not 0 or 1
+     */
     void quit(int input) {
         // 0 is quit
         // 1 is continue
