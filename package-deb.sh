@@ -21,7 +21,7 @@ gradle build
 
 # Copy the compiled JAR file to the package directory
 echo "Copying files to package directory..."
-cp app/build/libs/app.jar debian-package/usr/share/games/numberguessinggame/game.jar
+cp app/build/libs/app-all.jar debian-package/usr/share/games/numberguessinggame/game.jar
 
 # Copy documentation files
 cp README.md debian-package/usr/share/games/numberguessinggame/README.md
