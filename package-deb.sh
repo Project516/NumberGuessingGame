@@ -17,7 +17,7 @@ rm -f numberguessinggame.deb
 # Build the application using Gradle
 echo "Building application..."
 
-gradle build
+./gradlew build
 
 # Copy the compiled JAR file to the package directory
 echo "Copying files to package directory..."
