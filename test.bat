@@ -4,6 +4,6 @@ REM This script runs the console version of the game
 REM Note: Run gradlew.bat build first to compile the project
 
 REM Run the game in console mode (text-based interface)
-java -jar app/build/libs/app.jar --console
+java -jar app/build/libs/app-all.jar --console
 
 @pause

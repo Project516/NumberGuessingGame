@@ -6,4 +6,4 @@
 ./gradlew build
 
 # Run the game in GUI mode (default - opens a window)
-java -jar app/build/libs/app.jar
+java -jar app/build/libs/app-all.jar
