@@ -37,7 +37,7 @@ cd ..
 # Create package directory structure
 echo "Creating package structure..."
 mkdir -p ${PACKAGE_NAME}
-cp app/build/libs/app.jar ${PACKAGE_NAME}/game.jar
+cp app/build/libs/app-all.jar ${PACKAGE_NAME}/game.jar
 cp README.md ${PACKAGE_NAME}/README.txt
 cp LICENSE ${PACKAGE_NAME}/LICENSE
 
