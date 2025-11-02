@@ -1,13 +1,13 @@
 # Number Guessing Game
 
-A simple number guessing game where you try to guess a randomly generated number. The game features both a user-friendly graphical interface (GUI) and a classic console mode. The GUI provides visual feedback with color-coded hints and tracks your progress in real-time.
+A simple number guessing game where you try to guess a randomly generated number. The game features both a user-friendly graphical user interface (GUI) and a classic console mode. The GUI provides visual feedback with color-coded hints and tracks your progress in real-time.
 
 **Features:**
 - Swing-based GUI (default)
 - Console mode (use `--console` flag)
 - High score tracking with usernames
 - Persistent score storage
-- Cross-platform
+- Cross-platform (Made in Java!)
 
 ## Installation & Running
 
@@ -19,9 +19,9 @@ For Debian/Ubuntu and derivatives (recommended for terminal usage):
 
    You can use curl to do it from the command line:
    ```bash
-   curl -s -L -o numberguessingame.deb https://github.com/Project516/NumberGuessingGame/releases/download/0.0.x/numberguessinggame.deb
+   curl -s -L -o numberguessingame.deb https://github.com/Project516/NumberGuessingGame/releases/download/0.x.y/numberguessinggame.deb
    ```
-   where `x` is the version you want.
+   where `x` and `y` is the version you want.
 2. Install it:
    ```bash
    sudo apt update # Update packages
@@ -61,7 +61,7 @@ Download the `archive.zip` from the [latest release](https://github.com/project5
 
 #### Requirements
 
-- Java 17 or higher
+- Java 8 or higher
 
 #### How to Run
 
