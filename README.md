@@ -27,6 +27,8 @@ For Debian/Ubuntu and derivatives (recommended for terminal usage):
    sudo apt update # Update packages
    sudo apt install ./numberguessinggame.deb # From directory with the deb package
    sudo apt install -f  # Install dependencies
+   echo 'export PATH=$PATH:/usr/games' >> ~/.bashrc # Add games directory to user PATH
+   source ~/.bashrc
    ```
 3. Run from anywhere in your terminal:
    ```bash
