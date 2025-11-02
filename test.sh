@@ -6,4 +6,4 @@
 ./gradlew build
 
 # Run the game in console mode (text-based interface)
-java -jar app/build/libs/app.jar --console
+java -jar app/build/libs/app-all.jar --console
