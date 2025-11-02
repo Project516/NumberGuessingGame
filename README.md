@@ -5,7 +5,6 @@ A simple number guessing game where you try to guess a randomly generated number
 **Features:**
 - Swing-based GUI (default)
 - Console mode (use `--console` flag)
-- Web browser version (available on GitHub Pages)
 - High score tracking with usernames
 - Persistent score storage
 - Cross-platform
