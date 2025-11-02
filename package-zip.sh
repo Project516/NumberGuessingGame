@@ -16,7 +16,7 @@ cd ..
 mkdir NumberGuessingGame
 
 # Copy the game JAR and necessary files
-cp -r app/build/libs/app.jar NumberGuessingGame/game.jar
+cp -r app/build/libs/app-all.jar NumberGuessingGame/game.jar
 cp -r scripts/run.bat NumberGuessingGame/run.bat
 cp -r scripts/run.sh NumberGuessingGame/run.sh
 cp -r README.md NumberGuessingGame/README.txt

@@ -11,7 +11,7 @@ REM Create distribution directory structure
 mkdir NumberGuessingGame
 
 REM Copy the game JAR and necessary files
-copy app\build\libs\app.jar NumberGuessingGame\game.jar
+copy app\build\libs\app-all.jar NumberGuessingGame\game.jar
 copy scripts\run.bat NumberGuessingGame\run.bat
 copy scripts\run.sh NumberGuessingGame\run.sh
 copy README.md NumberGuessingGame\README.txt

@@ -36,6 +36,3 @@ NumberGuessingGame-linux/
 NumberGuessingGame-windows.zip
 NumberGuessingGame-macos.zip
 NumberGuessingGame-linux.tar.gz
-
-# TeaVM generated JavaScript (build artifact)
-teavm/classes.js
