@@ -23,9 +23,6 @@ jobs:
 
       - name: Generate JavaDoc
         run: ./gradlew javadoc
-      
-      - name: Build TeaVM (JavaScript compilation)
-        run: ./teavm.sh
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

@@ -11,7 +11,7 @@ echo "Building Number Guessing Game for Windows with bundled JRE..."
 # Configuration
 PACKAGE_NAME="NumberGuessingGame-windows"
 JRE_DIR="jre-windows"
-ADOPTIUM_BASE_URL="https://api.adoptium.net/v3/binary/latest/25/ga"
+ADOPTIUM_BASE_URL="https://api.adoptium.net/v3/binary/latest/8/ga"
 
 # Clean up any previous builds
 rm -rf ${PACKAGE_NAME}
