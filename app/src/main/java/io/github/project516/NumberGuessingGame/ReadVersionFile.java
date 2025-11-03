@@ -13,7 +13,7 @@ public class ReadVersionFile {
      * @return the version string
      */
     public String readVersion() {
-        String content = "1.0.0"; // Placeholder version
+        String content = "1.0.0"; // Default fallback version
         try (InputStream inputStream =
                         getClass().getClassLoader().getResourceAsStream("version.txt");
                 BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
