@@ -45,9 +45,9 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            ./app/build/libs/app.jar
+            ./app/build/libs/app-all.jar
             ./numberguessinggame.deb
             ./archive.zip
             ./NumberGuessingGame-windows.zip
             ./NumberGuessingGame-macos.zip
-            ./NumberGuessingGame-linux.tar.gz
+            ./NumberGuessingGame-linux.tar.xz
