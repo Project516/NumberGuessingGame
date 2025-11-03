@@ -1,7 +1,7 @@
 #!/bin/sh
 # Script to create a Linux package with bundled JRE for Number Guessing Game
 # This creates a self-contained package that doesn't require Java to be installed
-# Output: NumberGuessingGame-linux.tar.gz
+# Output: NumberGuessingGame-linux.tar.xz
 
 # Exit immediately if any command fails
 set -e
@@ -16,6 +16,7 @@ ADOPTIUM_BASE_URL="https://api.adoptium.net/v3/binary/latest/8/ga"
 # Clean up any previous builds
 rm -rf ${PACKAGE_NAME}
 rm -rf ${JRE_DIR}
+rm -f ${PACKAGE_NAME}.tar.xz
 rm -f ${PACKAGE_NAME}.tar.gz
 
 # Build the application using Gradle
@@ -58,14 +59,14 @@ EOF
 # Make the run script executable
 chmod +x ${PACKAGE_NAME}/run.sh
 
-# Create the final tar.gz archive
-echo "Creating tar.gz archive..."
-tar -czf ${PACKAGE_NAME}.tar.gz ${PACKAGE_NAME}/
+# Create the final tar.xz archive with maximum compression
+echo "Creating tar.xz archive..."
+tar -cJf ${PACKAGE_NAME}.tar.xz ${PACKAGE_NAME}/
 
 # Clean up temporary directories
 rm -rf ${PACKAGE_NAME}
 rm -rf ${JRE_DIR}
 
 echo ""
-echo "✓ Linux package with bundled JRE created: ${PACKAGE_NAME}.tar.gz"
+echo "✓ Linux package with bundled JRE created: ${PACKAGE_NAME}.tar.xz"
 echo ""
