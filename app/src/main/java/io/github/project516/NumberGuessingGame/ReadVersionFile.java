@@ -13,10 +13,10 @@ public class ReadVersionFile {
     /**
      * Retrieves the current version of the game by reading from the version.txt resource file.
      *
-     * @return the version string, or "rolling" if the file cannot be read
+     * @return the version string
      */
     public String readVersion() {
-        String content = "rolling"; // Placeholder version
+        String content = "0.1.0"; // Placeholder version
         try (InputStream inputStream =
                         getClass().getClassLoader().getResourceAsStream("version.txt");
                 BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
