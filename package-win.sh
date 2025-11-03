@@ -54,9 +54,9 @@ jre\bin\java.exe -jar game.jar
 @pause
 EOF
 
-# Create the final zip archive
+# Create the final zip archive with maximum compression
 echo "Creating zip archive..."
-zip -r ${PACKAGE_NAME}.zip ${PACKAGE_NAME}/
+zip -9 -r ${PACKAGE_NAME}.zip ${PACKAGE_NAME}/
 
 # Clean up temporary directories
 rm -rf ${PACKAGE_NAME}
