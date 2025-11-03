@@ -58,6 +58,11 @@ public class HighScore implements Comparable<HighScore> {
         return Integer.compare(this.numberOfGuesses, other.numberOfGuesses);
     }
 
+    /**
+     * Returns a string representation of this high score in the format "username: X guess(es)".
+     *
+     * @return a formatted string containing the username and number of guesses
+     */
     @Override
     public String toString() {
         return username + ": " + numberOfGuesses + " guess" + (numberOfGuesses == 1 ? "" : "es");
