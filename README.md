@@ -138,7 +138,6 @@ The game automatically tracks high scores (games won with the fewest guesses). H
 
 ```
 sdk install java 25-tem
-sdk install gradle
 ```
 
 Alternatively, install Eclipse Temurin JDK directly from https://adoptium.net/
@@ -147,13 +146,7 @@ Alternatively, install Eclipse Temurin JDK directly from https://adoptium.net/
 
 From the project root:
 ```
-gradle build
-```
-
-### Running Tests
-
-```
-gradle test
+./gradlew build
 ```
 
 ### Creating Release Archives
