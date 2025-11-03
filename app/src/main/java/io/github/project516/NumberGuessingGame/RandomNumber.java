@@ -12,10 +12,10 @@ public class RandomNumber {
     Random random = new Random();
 
     /**
-     * Generates a random integer between 0 and the specified maximum value (inclusive).
+     * Generates a random integer between 0 (inclusive) and the specified maximum value (inclusive).
      *
-     * @param max the maximum value for the random number
-     * @return a random integer between 0 and max (inclusive)
+     * @param max the maximum value for the random number (inclusive)
+     * @return a random integer in the range [0, max]
      */
     int number(int max) {
 
