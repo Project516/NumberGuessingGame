@@ -7,7 +7,7 @@ A simple number guessing game where you try to guess a randomly generated number
 - Console mode (use `--console` flag)
 - High score tracking with usernames
 - Persistent score storage
-- Cross-platform (Made in Java!)
+- Cross-platform (Made with Java!)
 
 ## Installation & Running
 
