@@ -6,7 +6,7 @@ package io.github.project516.NumberGuessingGame;
  */
 public class CheckGuess {
     /**
-     * Validates that a guess is within the acceptable range (1-100).
+     * Validates that a guess is within the acceptable range (1-101).
      *
      * @param guess the user's guess to validate
      * @throws IllegalArgumentException if the guess is less than 1 or greater than 101
