@@ -17,8 +17,8 @@ copy scripts\run.sh NumberGuessingGame\run.sh
 copy README.md NumberGuessingGame\README.txt
 copy LICENSE NumberGuessingGame\LICENSE
 
-REM Create the ZIP archive using PowerShell
-powershell -command "Compress-Archive -Path NumberGuessingGame -DestinationPath archive.zip -Force"
+REM Create the ZIP archive using PowerShell with maximum compression
+powershell -command "Compress-Archive -Path NumberGuessingGame -DestinationPath archive.zip -CompressionLevel Optimal -Force"
 
 REM Clean up temporary directory
 rmdir /s /q NumberGuessingGame

@@ -50,4 +50,4 @@ jobs:
             ./archive.zip
             ./NumberGuessingGame-windows.zip
             ./NumberGuessingGame-macos.zip
-            ./NumberGuessingGame-linux.tar.gz
+            ./NumberGuessingGame-linux.tar.xz
