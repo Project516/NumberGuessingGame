@@ -22,8 +22,8 @@ cp -r scripts/run.sh NumberGuessingGame/run.sh
 cp -r README.md NumberGuessingGame/README.txt
 cp -r LICENSE NumberGuessingGame/LICENSE
 
-# Create the ZIP archive
-zip -r archive.zip NumberGuessingGame/
+# Create the ZIP archive with maximum compression
+zip -9 -r archive.zip NumberGuessingGame/
 
 # Clean up temporary directory
 rm -rf NumberGuessingGame

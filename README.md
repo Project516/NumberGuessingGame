@@ -47,7 +47,7 @@ Download the platform-specific package with bundled JRE from the [latest release
 
 - **Windows**: `NumberGuessingGame-windows.zip` (no Java installation required)
 - **macOS**: `NumberGuessingGame-macos.zip` (no Java installation required)
-- **Linux**: `NumberGuessingGame-linux.tar.gz` (no Java installation required)
+- **Linux**: `NumberGuessingGame-linux.tar.xz` (no Java installation required)
 
 Extract the downloaded archive and run:
 
@@ -183,7 +183,7 @@ Run the following scripts to create platform-specific packages with bundled JRE:
 ```bash
 ./package-win.sh  # Creates NumberGuessingGame-windows.zip
 ./package-macos.sh    # Creates NumberGuessingGame-macos.zip
-./package-linux.sh    # Creates NumberGuessingGame-linux.tar.gz
+./package-linux.sh    # Creates NumberGuessingGame-linux.tar.xz
 ```
 
 These packages include a bundled JRE and do not require Java to be installed on the target system. They are automatically built and uploaded to GitHub Releases via GitHub Actions.
