@@ -1,17 +1,17 @@
 # Number Guessing Game
 
-A simple number guessing game where you try to guess a randomly generated number. The game features both a user-friendly graphical user interface (GUI) and a classic console mode. The GUI provides visual feedback with color-coded hints and tracks your progress in real-time.
+A simple number guessing game where you try to guess a randomly generated number. The game features both a user-friendly graphical user interface (GUI) and a classic console mode.
 
 **Features:**
 - Swing-based GUI (default)
 - Console mode (use `--console` flag)
 - High score tracking with usernames
 - Persistent score storage
-- Cross-platform (Made with Java!)
+- Cross-platform
 
 ## Installation & Running
 
-### Installation via Debian Package (Linux)
+### Installation via Debian Package (APT)
 
 For Debian/Ubuntu and derivatives (recommended for terminal usage):
 
@@ -45,9 +45,9 @@ sudo apt autoremove -y # Remove dependencies
 
 Download the platform-specific package with bundled JRE from the [latest release](https://github.com/project516/numberguessinggame/releases):
 
-- **Windows**: `NumberGuessingGame-windows.zip` (no Java installation required)
-- **macOS**: `NumberGuessingGame-macos.zip` (no Java installation required)
-- **Linux**: `NumberGuessingGame-linux.tar.xz` (no Java installation required)
+- **Windows**: `NumberGuessingGame-windows.zip`
+- **macOS**: `NumberGuessingGame-macos.zip`
+- **Linux**: `NumberGuessingGame-linux.tar.xz`
 
 Extract the downloaded archive and run:
 
@@ -75,7 +75,7 @@ Run `run.sh`
 
 ### How to Play
 
-The game now features both a graphical user interface (GUI) and a console mode.
+The game features both a graphical user interface (GUI) and a console mode.
 
 #### GUI Mode (Default)
 
@@ -117,10 +117,10 @@ In console mode:
 
 ### High Scores
 
-The game automatically tracks high scores (games won with the fewest guesses). High scores are stored persistently in your home directory at `~/.numberguessinggame/highscores.properties`.
+The game automatically tracks high scores (games won with the least guesses). High scores are stored in your home directory at `~/.numberguessinggame/highscores.properties`.
 
 - The top 10 scores are kept
-- Scores are sorted by the number of guesses (fewest is best)
+- Scores are sorted by the number of guesses (least is best)
 - Each score includes the username and number of guesses
 - High scores persist across game sessions
 - View high scores from the GUI menu (View → High Scores) or after completing a game
@@ -130,7 +130,6 @@ The game automatically tracks high scores (games won with the fewest guesses). H
 ### Requirements
 
 - Java 25 (Eclipse Temurin recommended for development)
-- Gradle
 
 ### Development Setup
 
@@ -151,7 +150,7 @@ From the project root:
 
 ### Creating Release Archives
 
-#### Zip Archive (Requires Java)
+#### Zip Archive
 
 **On Windows:**
 Run `.\gradlew build` and `.\package.bat` from the project root.
