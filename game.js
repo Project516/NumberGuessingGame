@@ -155,8 +155,16 @@ class NumberGuessingGame {
         const username = this.usernameInput.value.trim();
         
         if (!username) {
-            alert('Please enter your name!');
+            // Add visual feedback for empty username
+            this.usernameInput.style.borderColor = 'var(--danger-color)';
+            this.usernameInput.placeholder = 'Please enter your name!';
             this.usernameInput.focus();
+            
+            // Reset border color after 2 seconds
+            setTimeout(() => {
+                this.usernameInput.style.borderColor = '';
+                this.usernameInput.placeholder = 'Your name';
+            }, 2000);
             return;
         }
         
