@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A modern number guessing game with high score tracking">
+    <meta name="theme-color" content="#4CAF50">
+    <title>Number Guessing Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 Number Guessing Game</h1>
+            <p class="subtitle">Can you guess the number between 1 and 100?</p>
+        </header>
+
+        <main>
+            <div class="game-card">
+                <div id="game-area">
+                    <div class="guess-count">
+                        <span class="label">Guesses:</span>
+                        <span id="guess-counter" class="counter">0</span>
+                    </div>
+
+                    <div id="feedback" class="feedback"></div>
+
+                    <div class="input-group">
+                        <input 
+                            type="number" 
+                            id="guess-input" 
+                            min="1" 
+                            max="100" 
+                            placeholder="Enter your guess (1-100)"
+                            autocomplete="off"
+                        >
+                        <button id="submit-btn" class="btn btn-primary">Submit Guess</button>
+                    </div>
+                </div>
+
+                <div id="win-screen" class="win-screen" style="display: none;">
+                    <div class="win-content">
+                        <div class="celebration">🎉</div>
+                        <h2>Congratulations!</h2>
+                        <p id="win-message"></p>
+                        
+                        <div class="username-input">
+                            <label for="username">Enter your name for the high scores:</label>
+                            <input 
+                                type="text" 
+                                id="username" 
+                                placeholder="Your name" 
+                                maxlength="20"
+                                autocomplete="off"
+                            >
+                            <button id="save-score-btn" class="btn btn-primary">Save Score</button>
+                        </div>
+                        
+                        <button id="new-game-btn" class="btn btn-secondary" style="display: none; margin-top: 15px;">New Game</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="high-scores-card">
+                <div class="card-header">
+                    <h2>🏆 High Scores</h2>
+                    <button id="clear-scores-btn" class="btn-icon" title="Clear all scores">🗑️</button>
+                </div>
+                <div id="high-scores" class="high-scores-list">
+                    <p class="empty-state">No high scores yet. Be the first!</p>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <button id="about-btn" class="btn-link">About</button>
+                <a href="https://github.com/Project516/NumberGuessingGame" target="_blank" rel="noopener" class="btn-link">
+                    View on GitHub
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- About Modal -->
+    <div id="about-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>About</h2>
+                <button class="modal-close" id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Number Guessing Game</strong></p>
+                <p>A simple number guessing game where you try to guess a randomly generated number between 1 and 100.</p>
+                <h3>How to Play:</h3>
+                <ul>
+                    <li>Enter a number between 1 and 100</li>
+                    <li>Submit your guess</li>
+                    <li>Follow the hints (too high/too low)</li>
+                    <li>Try to guess the number in as few attempts as possible</li>
+                    <li>Save your score and compete for the top spot!</li>
+                </ul>
+                <h3>Features:</h3>
+                <ul>
+                    <li>Modern, responsive design</li>
+                    <li>High score tracking with localStorage</li>
+                    <li>Visual feedback for guesses</li>
+                    <li>Mobile-friendly interface</li>
+                </ul>
+                <p class="footer-text">
+                    <a href="https://github.com/Project516/NumberGuessingGame" target="_blank" rel="noopener">
+                        View the project on GitHub
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
