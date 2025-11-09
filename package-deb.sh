@@ -1,4 +1,9 @@
 #!/bin/sh
+
+# SPDX-FileCopyrightText: 2024 Project516 <138796702+Project516@users.noreply.github.com>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 # Script to create a Debian package (.deb) for Number Guessing Game
 # This package can be installed on Debian-based Linux distributions (Ubuntu, Mint, etc.)
 # Usage: ./package-deb.sh
