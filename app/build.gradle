@@ -18,8 +18,6 @@ repositories {
 dependencies {
     // This dependency is used by the application.
     implementation libs.guava
-
-    implementation files('../libs/jlibutils-0.0.1.jar')
 }
 
 testing {
