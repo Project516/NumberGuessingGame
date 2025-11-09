@@ -1,4 +1,4 @@
-REM SPDX-FileCopyrightText: 2024 Project516 <138796702+Project516@users.noreply.github.com>
+REM SPDX-FileCopyrightText: 2025 Project516 <138796702+Project516@users.noreply.github.com>
 REM
 REM SPDX-License-Identifier: GPL-3.0-or-later
 
