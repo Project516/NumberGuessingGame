@@ -1,7 +1,3 @@
-REM SPDX-FileCopyrightText: 2025 Project516 <138796702+Project516@users.noreply.github.com>
-REM
-REM SPDX-License-Identifier: GPL-3.0-or-later
-
 @echo off
 REM Creates a distributable ZIP archive of the game (Windows)
 REM This archive requires Java to be installed on the user's system
