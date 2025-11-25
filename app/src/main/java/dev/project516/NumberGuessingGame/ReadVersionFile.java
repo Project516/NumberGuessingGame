@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package io.github.project516.NumberGuessingGame;
+package dev.project516.NumberGuessingGame;
 
 import java.io.BufferedReader;
 import java.io.IOException;

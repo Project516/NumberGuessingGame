@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package io.github.project516.NumberGuessingGame;
+package dev.project516.NumberGuessingGame;
 
 /**
  * Utility class for prompting and validating usernames in the Number Guessing Game. Used for the
