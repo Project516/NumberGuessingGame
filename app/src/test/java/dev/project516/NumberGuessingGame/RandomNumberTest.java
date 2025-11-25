@@ -2,16 +2,16 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package io.github.project516.NumberGuessingGame;
+package dev.project516.NumberGuessingGame;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class SystemInfoTest {
+class RandomNumberTest {
     @Test
-    void jdkIsHere() {
-        SystemInfo classUnderTest = new SystemInfo();
-        assertNotNull(classUnderTest.vendor(), "expect output!");
+    void ranNum() {
+        RandomNumber classUnderTest = new RandomNumber();
+        assertNotNull(classUnderTest.number(100), "expect output!");
     }
 }

@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package io.github.project516.NumberGuessingGame;
+package dev.project516.NumberGuessingGame;
 
 /**
  * Validates user guesses in the Number Guessing Game. This class ensures that user input falls

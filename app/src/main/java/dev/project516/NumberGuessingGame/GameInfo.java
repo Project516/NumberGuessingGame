@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package io.github.project516.NumberGuessingGame;
+package dev.project516.NumberGuessingGame;
 
 /**
  * Provides information about the Number Guessing Game application. This class contains methods to
@@ -42,6 +42,6 @@ public class GameInfo {
      * @return the online Javadoc URL
      */
     String onlineJavadoc() {
-        return "https://project516.github.io/NumberGuessingGame";
+        return "https://project516.dev/NumberGuessingGame";
     }
 }
