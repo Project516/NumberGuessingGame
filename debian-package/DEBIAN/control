@@ -3,7 +3,7 @@ Version: 1.0.0
 Section: games
 Priority: optional
 Architecture: all
-Depends: default-jre | java8-runtime
+Depends: default-jre
 Maintainer: project516 <project516.progress139@slmail.me>
 Description: A simple number guessing game
  A simple number guessing game where you try to guess a randomly
