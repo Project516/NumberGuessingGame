@@ -25,6 +25,7 @@ build
 
 archive.zip
 numberguessinggame.deb
+numberguessinggame-*.rpm
 
 # JRE bundling artifacts
 jre-windows/
