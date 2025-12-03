@@ -1,0 +1,4 @@
+# Ignore all build artifacts in this directory
+*
+# But keep this .gitignore file
+!.gitignore

@@ -29,6 +29,12 @@ jobs:
       - name: Build Debian package
         run: ./package-deb.sh
 
+      - name: Install RPM build tools
+        run: sudo apt-get update && sudo apt-get install -y rpm
+
+      - name: Build Fedora/RPM package
+        run: ./package-rpm.sh
+
       - name: Build ZIP archive
         run: ./package-zip.sh
 
@@ -47,6 +53,7 @@ jobs:
           files: |
             ./app/build/libs/app-all.jar
             ./numberguessinggame.deb
+            ./numberguessinggame-*.rpm
             ./archive.zip
             ./NumberGuessingGame-windows.zip
             ./NumberGuessingGame-macos.zip
