@@ -19,7 +19,7 @@ For Debian/Ubuntu and derivatives (recommended for terminal usage):
 
    You can use curl to do it from the command line:
    ```bash
-   curl -s -L -o numberguessingame.deb https://github.com/Project516/NumberGuessingGame/releases/download/0.x.y/numberguessinggame.deb
+   curl -s -L -o numberguessinggame.deb https://github.com/Project516/NumberGuessingGame/releases/download/0.x.y/numberguessinggame.deb
    ```
    where `x` and `y` is the version you want.
 2. Install it:
