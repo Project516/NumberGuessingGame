@@ -96,7 +96,7 @@ Download the `archive.zip` from the [latest release](https://github.com/project5
 
 #### Requirements
 
-- Java 8 or higher
+- Java 17 or higher
 
 #### How to Run
 

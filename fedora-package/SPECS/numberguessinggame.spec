@@ -12,7 +12,7 @@ URL:            https://github.com/Project516/NumberGuessingGame
 Source0:        game.jar
 
 BuildArch:      noarch
-Requires:       java-1.8.0-openjdk-headless
+Requires:       java-17-openjdk-headless
 
 %description
 A simple number guessing game where you try to guess a randomly
