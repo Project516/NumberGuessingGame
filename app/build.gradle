@@ -22,7 +22,7 @@ testing {
         // Configure the built-in test suite
         test {
             // Use JUnit Jupiter test framework
-            useJUnitJupiter('5.14.1')
+            useJUnitJupiter('6.0.1')
         }
     }
 }
