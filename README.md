@@ -19,7 +19,7 @@ For Debian/Ubuntu and derivatives (recommended for terminal usage):
 
    You can use curl to do it from the command line:
    ```bash
-   curl -s -L -o numberguessingame.deb https://github.com/Project516/NumberGuessingGame/releases/download/0.x.y/numberguessinggame.deb
+   curl -s -L -o numberguessinggame.deb https://github.com/Project516/NumberGuessingGame/releases/download/0.x.y/numberguessinggame.deb
    ```
    where `x` and `y` is the version you want.
 2. Install it:
@@ -39,6 +39,39 @@ To uninstall:
 ```bash
 sudo apt remove numberguessinggame
 sudo apt autoremove -y # Remove dependencies
+```
+
+### Installation via Fedora/RPM Package (DNF/YUM)
+
+For Fedora, RHEL, CentOS, and other RPM-based distributions:
+
+1. Download the `.rpm` package from the [latest release](https://github.com/Project516/NumberGuessingGame/releases)
+
+   You can use curl to do it from the command line:
+   ```bash
+   curl -s -L -o numberguessinggame.rpm https://github.com/Project516/NumberGuessingGame/releases/download/0.x.y/numberguessinggame-1.0.0-1.noarch.rpm
+   ```
+   where `x` and `y` is the version you want.
+2. Install it:
+   ```bash
+   sudo dnf install ./numberguessinggame-*.rpm
+   ```
+   Or on older systems:
+   ```bash
+   sudo yum install ./numberguessinggame-*.rpm
+   ```
+3. Run from anywhere in your terminal:
+   ```bash
+   numberguessinggame
+   ```
+
+To uninstall:
+```bash
+sudo dnf remove numberguessinggame
+```
+Or on older systems:
+```bash
+sudo yum remove numberguessinggame
 ```
 
 ### Standalone Packages with Bundled JRE (Recommended)
@@ -63,7 +96,7 @@ Download the `archive.zip` from the [latest release](https://github.com/project5
 
 #### Requirements
 
-- Java 8 or higher
+- Java 17 or higher
 
 #### How to Run
 
@@ -166,6 +199,13 @@ This will create `archive.zip` containing the application, run scripts, README, 
 Run `./package-deb.sh` from the project root.
 
 This will create `numberguessinggame.deb` which can be installed via `apt`/`dpkg` on Debian-based systems. The package can be released to GitHub Releases for easy distribution.
+
+#### Fedora/RPM Package
+
+**On Linux (requires rpm-build):**
+Run `./package-rpm.sh` from the project root.
+
+This will create `numberguessinggame-1.0.0-1.noarch.rpm` which can be installed via `dnf`/`yum`/`rpm` on Fedora, RHEL, CentOS, and other RPM-based systems. The package can be released to GitHub Releases for easy distribution.
 
 #### Platform-Specific Packages with Bundled JRE
 
