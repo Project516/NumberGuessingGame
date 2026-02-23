@@ -66,7 +66,7 @@ jobs:
         run: ${{ matrix.target.command }}
 
       - name: Upload ${{ matrix.target.name }} artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ matrix.target.artifact }}
           path: ${{ matrix.target.path }}
@@ -80,7 +80,7 @@ jobs:
 
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           path: dist
 
