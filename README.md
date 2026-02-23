@@ -25,9 +25,8 @@ For Debian/Ubuntu and derivatives (recommended for terminal usage):
 
    You can use curl to do it from the command line:
    ```bash
-   curl -s -L -o numberguessinggame.deb https://github.com/Project516/NumberGuessingGame/releases/download/0.x.y/numberguessinggame.deb
+   curl -s -L -o numberguessinggame.deb https://github.com/Project516/NumberGuessingGame/releases/latest/download/numberguessinggame.deb
    ```
-   where `x` and `y` is the version you want.
 2. Install it:
    ```bash
    sudo apt update # Update packages
@@ -55,16 +54,15 @@ For Fedora, RHEL, CentOS, and other RPM-based distributions:
 
    You can use curl to do it from the command line:
    ```bash
-   curl -s -L -o numberguessinggame.rpm https://github.com/Project516/NumberGuessingGame/releases/download/0.x.y/numberguessinggame-1.0.0-1.noarch.rpm
+   curl -s -L -o numberguessinggame.rpm https://github.com/Project516/NumberGuessingGame/releases/latest/download/numberguessinggame.rpm
    ```
-   where `x` and `y` is the version you want.
 2. Install it:
    ```bash
-   sudo dnf install ./numberguessinggame-*.rpm
+   sudo dnf install ./numberguessinggame.rpm
    ```
    Or on older systems:
    ```bash
-   sudo yum install ./numberguessinggame-*.rpm
+   sudo yum install ./numberguessinggame.rpm
    ```
 3. Run from anywhere in your terminal:
    ```bash
@@ -175,7 +173,7 @@ The game automatically tracks high scores (games won with the least guesses). Hi
 [SDKMAN!](https://sdkman.io) is the recommended way to install Java and Gradle:
 
 ```
-sdk install java 25-tem
+sdk install java 25.0.2-tem
 ```
 
 Alternatively, install Eclipse Temurin JDK directly from https://adoptium.net/
