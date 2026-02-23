@@ -27,7 +27,7 @@ echo "Cleaning up previous builds..."
 rm -rf ~/rpmbuild/RPMS/noarch/numberguessinggame-*.rpm
 rm -rf ~/rpmbuild/BUILD/numberguessinggame-*
 rm -rf ~/rpmbuild/BUILDROOT/numberguessinggame-*
-rm -f numberguessinggame-*.rpm
+rm -f numberguessinggame.rpm
 
 # Build the application using Gradle
 echo "Building application..."
@@ -59,13 +59,13 @@ cp ~/rpmbuild/RPMS/noarch/numberguessinggame-*.rpm ./numberguessinggame.rpm
 
 # Display success message with installation instructions
 echo ""
-echo "✓ RPM package created: $(ls numberguessinggame-*.rpm)"
+echo "✓ RPM package created: $(ls numberguessinggame.rpm)"
 echo ""
 echo "To install on Fedora/RHEL/CentOS, run:"
-echo "  sudo dnf install ./numberguessinggame-*.rpm"
+echo "  sudo dnf install ./numberguessinggame.rpm"
 echo ""
 echo "Or on older systems:"
-echo "  sudo yum install ./numberguessinggame-*.rpm"
+echo "  sudo yum install ./numberguessinggame.rpm"
 echo ""
 echo "After installation, run the game with:"
 echo "  numberguessinggame"
