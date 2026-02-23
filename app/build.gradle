@@ -1,8 +1,12 @@
+// SPDX-FileCopyrightText: 2026 Project516 <138796702+Project516@users.noreply.github.com>
+//
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 plugins {
 
     id 'application'
-    id 'com.diffplug.spotless' version '8.1.0'
-    id 'com.gradleup.shadow' version '9.2.2'
+    id 'com.diffplug.spotless' version '8.2.1'
+    id 'com.gradleup.shadow' version '9.3.1'
 }
 
 repositories {
@@ -22,7 +26,7 @@ testing {
         // Configure the built-in test suite
         test {
             // Use JUnit Jupiter test framework
-            useJUnitJupiter('6.0.1')
+            useJUnitJupiter('6.0.3')
         }
     }
 }
