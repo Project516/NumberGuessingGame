@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2026 Project516 <138796702+Project516@users.noreply.github.com>
+
+SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
 # Number Guessing Game
 
 A simple number guessing game where you try to guess a randomly generated number. The game features both a user-friendly graphical user interface (GUI) and a classic console mode.
