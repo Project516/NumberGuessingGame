@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 Name:           numberguessinggame
-Version:        0.1.8
+Version:        0.1.9
 Release:        1%{?dist}
 Summary:        A simple number guessing game
 
