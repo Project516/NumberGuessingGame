@@ -57,7 +57,7 @@ jobs:
           files: |
             ./app/build/libs/app-all.jar
             ./numberguessinggame.deb
-            ./numberguessinggame-*.rpm
+            ./numberguessinggame.rpm
             ./archive.zip
             ./NumberGuessingGame-windows.zip
             ./NumberGuessingGame-macos.zip
