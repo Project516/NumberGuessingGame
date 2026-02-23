@@ -16,22 +16,22 @@ jobs:
       matrix:
         target:
           - name: jar
-            command: ./gradlew build
-            artifact: app-all.jar
-            path: ./app/build/libs/app-all.jar
+            command: ./gradlew build && cp app/build/libs/app-all.jar NumberGuessingGame.jar
+            artifact: NumberGuessingGame.jar
+            path: ./NumberGuessingGame.jar
           - name: deb
             command: ./package-deb.sh
-            artifact: numberguessinggame.deb
-            path: ./numberguessinggame.deb
+            artifact: NumberGuessingGame.deb
+            path: ./NumberGuessingGame.deb
           - name: rpm
             command: ./package-rpm.sh
-            artifact: numberguessinggame-rpm
-            path: ./numberguessinggame-*.rpm
+            artifact: NumberGuessingGame.rpm
+            path: ./NumberGuessingGame.rpm
             needsRpmTools: true
           - name: zip
             command: ./package-zip.sh
-            artifact: archive.zip
-            path: ./archive.zip
+            artifact: NumberGuessingGame-archive.zip
+            path: ./NumberGuessingGame-archive.zip
           - name: windows
             command: ./package-win.sh
             artifact: NumberGuessingGame-windows.zip
@@ -88,10 +88,10 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            dist/app-all.jar/app-all.jar
-            dist/numberguessinggame.deb/numberguessinggame.deb
-            dist/numberguessinggame-rpm/numberguessinggame-*.rpm
-            dist/archive.zip/archive.zip
+            dist/NumberGuessingGame.jar/NumberGuessingGame.jar
+            dist/NumberGuessingGame.deb/NumberGuessingGame.deb
+            dist/NumberGuessingGame.rpm/NumberGuessingGame.rpm
+            dist/NumberGuessingGame-archive.zip/NumberGuessingGame-archive.zip
             dist/NumberGuessingGame-windows.zip/NumberGuessingGame-windows.zip
             dist/NumberGuessingGame-macos.zip/NumberGuessingGame-macos.zip
             dist/NumberGuessingGame-linux.tar.xz/NumberGuessingGame-linux.tar.xz
