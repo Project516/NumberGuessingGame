@@ -55,7 +55,7 @@ rpmbuild -bb ~/rpmbuild/SPECS/numberguessinggame.spec
 
 # Copy the built RPM to the current directory
 echo "Copying RPM package to current directory..."
-cp ~/rpmbuild/RPMS/noarch/numberguessinggame-*.rpm .
+cp ~/rpmbuild/RPMS/noarch/numberguessinggame-*.rpm ./numberguessinggame.rpm
 
 # Display success message with installation instructions
 echo ""
