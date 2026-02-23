@@ -11,6 +11,8 @@ on:
 jobs:
   build-assets:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     strategy:
       fail-fast: true
       matrix:
