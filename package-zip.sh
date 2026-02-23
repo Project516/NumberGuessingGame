@@ -10,7 +10,7 @@
 # Clean up any previous builds
 rm -rf NumberGuessingGame
 rm -rf temp
-rm -f archive.zip
+rm -f NumberGuessingGame-archive.zip
 
 # Build the application
 cd app
@@ -28,7 +28,7 @@ cp -r README.md NumberGuessingGame/README.txt
 cp -r LICENSE NumberGuessingGame/LICENSE
 
 # Create the ZIP archive with maximum compression
-zip -9 -r archive.zip NumberGuessingGame/
+zip -9 -r NumberGuessingGame-archive.zip NumberGuessingGame/
 
 # Clean up temporary directory
 rm -rf NumberGuessingGame
