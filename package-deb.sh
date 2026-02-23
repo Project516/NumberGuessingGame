@@ -7,7 +7,7 @@
 # Script to create a Debian package (.deb) for Number Guessing Game
 # This package can be installed on Debian-based Linux distributions (Ubuntu, Mint, etc.)
 # Usage: ./package-deb.sh
-# Output: numberguessinggame.deb
+# Output: NumberGuessingGame.deb
 
 # Exit immediately if any command fails
 set -e
@@ -17,7 +17,7 @@ echo "Building Number Guessing Game Debian package..."
 # Clean up any previous build artifacts
 echo "Cleaning up previous builds..."
 rm -rf debian-package/usr/share/games/numberguessinggame/*
-rm -f numberguessinggame.deb
+rm -f NumberGuessingGame.deb
 
 # Build the application using Gradle
 echo "Building application..."
@@ -40,14 +40,14 @@ chmod 755 debian-package/usr/games/numberguessinggame
 
 # Build the .deb package using dpkg-deb
 echo "Building .deb package..."
-dpkg-deb --build debian-package numberguessinggame.deb
+dpkg-deb --build debian-package NumberGuessingGame.deb
 
 # Display success message with installation instructions
 echo ""
-echo "✓ Debian package created: numberguessinggame.deb"
+echo "✓ Debian package created: NumberGuessingGame.deb"
 echo ""
 echo "To install, run:"
-echo "  sudo apt install ./numberguessinggame.deb"
+echo "  sudo apt install ./NumberGuessingGame.deb"
 echo "  sudo apt install -f  # to install any missing dependencies"
 echo ""
 echo "After installation, run the game with:"

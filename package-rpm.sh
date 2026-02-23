@@ -7,7 +7,7 @@
 # Script to create a Fedora/RPM package (.rpm) for Number Guessing Game
 # This package can be installed on Fedora, RHEL, CentOS, and other RPM-based distributions
 # Usage: ./package-rpm.sh
-# Output: numberguessinggame-1.0.0-1.noarch.rpm
+# Output: NumberGuessingGame.rpm
 
 # Exit immediately if any command fails
 set -e
@@ -27,7 +27,7 @@ echo "Cleaning up previous builds..."
 rm -rf ~/rpmbuild/RPMS/noarch/numberguessinggame-*.rpm
 rm -rf ~/rpmbuild/BUILD/numberguessinggame-*
 rm -rf ~/rpmbuild/BUILDROOT/numberguessinggame-*
-rm -f numberguessinggame.rpm
+rm -f NumberGuessingGame.rpm
 
 # Build the application using Gradle
 echo "Building application..."
@@ -55,17 +55,17 @@ rpmbuild -bb ~/rpmbuild/SPECS/numberguessinggame.spec
 
 # Copy the built RPM to the current directory
 echo "Copying RPM package to current directory..."
-cp ~/rpmbuild/RPMS/noarch/numberguessinggame-*.rpm ./numberguessinggame.rpm
+cp ~/rpmbuild/RPMS/noarch/numberguessinggame-*.rpm ./NumberGuessingGame.rpm
 
 # Display success message with installation instructions
 echo ""
-echo "✓ RPM package created: $(ls numberguessinggame.rpm)"
+echo "✓ RPM package created: $(ls NumberGuessingGame.rpm)"
 echo ""
 echo "To install on Fedora/RHEL/CentOS, run:"
-echo "  sudo dnf install ./numberguessinggame.rpm"
+echo "  sudo dnf install ./NumberGuessingGame.rpm"
 echo ""
 echo "Or on older systems:"
-echo "  sudo yum install ./numberguessinggame.rpm"
+echo "  sudo yum install ./NumberGuessingGame.rpm"
 echo ""
 echo "After installation, run the game with:"
 echo "  numberguessinggame"

@@ -27,18 +27,20 @@ gradle-app.setting
 # Ignore Gradle build output directory
 build
 
-archive.zip
-numberguessinggame.deb
-numberguessinggame-*.rpm
-
 # JRE bundling artifacts
 jre-windows/
 jre-macos/
 jre-linux/
+
+# Unzipped artifacts
 NumberGuessingGame-windows/
 NumberGuessingGame-macos/
 NumberGuessingGame-linux/
+
+# Packaged artifacts
 NumberGuessingGame-windows.zip
 NumberGuessingGame-macos.zip
 NumberGuessingGame-linux.tar.xz
-numberguessinggame.rpm
+NumberGuessingGame.rpm
+NumberGuessingGame.deb
+NumberGuessingGame.jar
