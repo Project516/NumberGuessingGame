@@ -37,7 +37,7 @@ For Debian/Ubuntu and derivatives:
    ```
 3. Run from anywhere in your terminal (launches GUI by default):
    ```bash
-   numberguessinggame
+   NumberGuessingGame
    ```
 
    To run in console mode, use the `-c` flag:
@@ -47,7 +47,7 @@ For Debian/Ubuntu and derivatives:
 
 To uninstall:
 ```bash
-sudo apt remove numberguessinggame
+sudo apt remove NumberGuessingGame
 sudo apt autoremove -y # Remove dependencies
 ```
 
@@ -71,7 +71,7 @@ For Fedora, RHEL, CentOS, and other RPM-based distributions:
    ```
 3. Run from anywhere in your terminal (launches GUI by default):
    ```bash
-   numberguessinggame
+   NumberGuessingGame
    ```
 
    To run in console mode, use the `-c` flag:
@@ -81,16 +81,16 @@ For Fedora, RHEL, CentOS, and other RPM-based distributions:
 
 To uninstall:
 ```bash
-sudo dnf remove numberguessinggame
+sudo dnf remove NumberGuessingGame
 ```
 Or on older systems:
 ```bash
-sudo yum remove numberguessinggame
+sudo yum remove NumberGuessingGame
 ```
 
 ### Standalone Packages with Bundled JRE (Recommended)
 
-Download the platform-specific package with bundled JRE from the [latest release](https://github.com/Project516/NumberGuessingGame/releases):
+Download the platform-specific package with bundled JRE from the [latest release](https://github.com/project516/NumberGuessingGame/releases):
 
 - **Windows**: `NumberGuessingGame-windows.zip`
 - **macOS**: `NumberGuessingGame-macos.zip`
@@ -106,7 +106,7 @@ Run `run.sh`
 
 ### Manual Installation (Requires Java)
 
-Download the `archive.zip` from the [latest release](https://github.com/Project516/NumberGuessingGame/releases)
+Download the `archive.zip` from the [latest release](https://github.com/project516/NumberGuessingGame/releases)
 
 #### Requirements
 
@@ -204,21 +204,21 @@ Run `.\gradlew build` and `.\package.bat` from the project root.
 **On Linux/Mac:**
 Run `./package.sh` from the project root.
 
-This will create `archive.zip` containing the application, run scripts, README, and LICENSE. The archive can be released to GitHub Releases.
+This will create `archive.zip` containing the application, run scripts, README, and LICENSE.
 
 #### Debian Package
 
 **On Linux:**
 Run `./package-deb.sh` from the project root.
 
-This will create `NumberGuessingGame.deb` which can be installed via `apt`/`dpkg` on Debian-based systems. The package can be released to GitHub Releases for easy distribution.
+This will create `NumberGuessingGame.deb` which can be installed via `apt`/`dpkg` on Debian-based systems.
 
 #### Fedora/RPM Package
 
 **On Linux (requires rpm-build):**
 Run `./package-rpm.sh` from the project root.
 
-This will create `NumberGuessingGame.rpm` which can be installed via `dnf`/`yum`/`rpm` on Fedora, RHEL, CentOS, and other RPM-based systems. The package can be released to GitHub Releases for easy distribution.
+This will create `NumberGuessingGame.rpm` which can be installed via `dnf`/`yum`/`rpm` on Fedora, RHEL, CentOS, and other RPM-based systems.
 
 #### Platform-Specific Packages with Bundled JRE
 
@@ -231,4 +231,4 @@ Run the following scripts to create platform-specific packages with bundled JRE:
 ./package-linux.sh    # Creates NumberGuessingGame-linux.tar.xz
 ```
 
-These packages include a bundled JRE and do not require Java to be installed on the target system. They are automatically built and uploaded to GitHub Releases via GitHub Actions.
+These packages include a bundled JRE and do not require Java to be installed on the target system.
