@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 /** Unit tests for the HighScoreManager class. */
 class HighScoreManagerTest {
-    private static final String TEST_CONFIG_DIR = ".numberguessinggame_test";
+    private static final String TEST_CONFIG_DIR = ".NumberGuessingGame_test";
 
     private void cleanup() {
         // Clean up test files

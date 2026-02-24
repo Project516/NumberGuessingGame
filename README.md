@@ -10,7 +10,7 @@ A simple number guessing game where you try to guess a randomly generated number
 
 **Features:**
 - Swing-based GUI (default)
-- Console mode (use `--console` flag)
+- Console mode (use `--console` or `-c`)
 - High score tracking with usernames
 - Persistent score storage
 - Cross-platform
@@ -19,9 +19,9 @@ A simple number guessing game where you try to guess a randomly generated number
 
 ### Installation via Debian Package (APT)
 
-For Debian/Ubuntu and derivatives (recommended for terminal usage):
+For Debian/Ubuntu and derivatives:
 
-1. Download the `.deb` package from the [latest release](https://github.com/Project516/NumberGuessingGame/releases)
+1. Download the `NumberGuessingGame.deb` package from the [latest release](https://github.com/Project516/NumberGuessingGame/releases)
 
    You can use curl to do it from the command line:
    ```bash
@@ -35,9 +35,14 @@ For Debian/Ubuntu and derivatives (recommended for terminal usage):
    echo 'export PATH=$PATH:/usr/games' >> ~/.bashrc # Add games directory to user PATH
    source ~/.bashrc
    ```
-3. Run from anywhere in your terminal:
+3. Run from anywhere in your terminal (launches GUI by default):
    ```bash
    NumberGuessingGame
+   ```
+
+   To run in console mode, use the `-c` flag:
+   ```bash
+   numberguessinggame -c
    ```
 
 To uninstall:
@@ -50,7 +55,7 @@ sudo apt autoremove -y # Remove dependencies
 
 For Fedora, RHEL, CentOS, and other RPM-based distributions:
 
-1. Download the `.rpm` package from the [latest release](https://github.com/Project516/NumberGuessingGame/releases)
+1. Download the `NumberGuessingGame.rpm` package from the [latest release](https://github.com/Project516/NumberGuessingGame/releases)
 
    You can use curl to do it from the command line:
    ```bash
@@ -64,9 +69,14 @@ For Fedora, RHEL, CentOS, and other RPM-based distributions:
    ```bash
    sudo yum install ./NumberGuessingGame.rpm
    ```
-3. Run from anywhere in your terminal:
+3. Run from anywhere in your terminal (launches GUI by default):
    ```bash
    NumberGuessingGame
+   ```
+
+   To run in console mode, use the `-c` flag:
+   ```bash
+   numberguessinggame -c
    ```
 
 To uninstall:
@@ -138,10 +148,9 @@ The game features both a graphical user interface (GUI) and a console mode.
 To run the classic console version, use the `--console` or `-c` flag:
 
 ```bash
-java -jar app.jar --console
-# or
-./run.sh --console  # Linux/Mac
-run.bat --console   # Windows
+java -jar app.jar --console  # or use -c
+./run.sh --console   # Linux/Mac, can also use -c
+run.bat --console    # Windows, can also use -c
 ```
 
 In console mode:
