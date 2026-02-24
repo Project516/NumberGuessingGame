@@ -10,7 +10,7 @@ A simple number guessing game where you try to guess a randomly generated number
 
 **Features:**
 - Swing-based GUI (default)
-- Console mode (use `--console` flag)
+- Console mode (use `--console` or `-c`)
 - High score tracking with usernames
 - Persistent score storage
 - Cross-platform
@@ -19,25 +19,30 @@ A simple number guessing game where you try to guess a randomly generated number
 
 ### Installation via Debian Package (APT)
 
-For Debian/Ubuntu and derivatives (recommended for terminal usage):
+For Debian/Ubuntu and derivatives:
 
-1. Download the `.deb` package from the [latest release](https://github.com/Project516/NumberGuessingGame/releases)
+1. Download the `NumberGuessingGame.deb` package from the [latest release](https://github.com/Project516/NumberGuessingGame/releases)
 
    You can use curl to do it from the command line:
    ```bash
-   curl -s -L -o numberguessinggame.deb https://github.com/Project516/NumberGuessingGame/releases/latest/download/numberguessinggame.deb
+   curl -s -L -o NumberGuessingGame.deb https://github.com/Project516/NumberGuessingGame/releases/latest/download/NumberGuessingGame.deb
    ```
 2. Install it:
    ```bash
    sudo apt update # Update packages
-   sudo apt install ./numberguessinggame.deb # From directory with the deb package
+   sudo apt install ./NumberGuessingGame.deb # From directory with the deb package
    sudo apt install -f  # Install dependencies
    echo 'export PATH=$PATH:/usr/games' >> ~/.bashrc # Add games directory to user PATH
    source ~/.bashrc
    ```
-3. Run from anywhere in your terminal:
+3. Run from anywhere in your terminal (launches GUI by default):
    ```bash
    numberguessinggame
+   ```
+
+   To run in console mode, use the `-c` flag:
+   ```bash
+   numberguessinggame -c
    ```
 
 To uninstall:
@@ -50,23 +55,28 @@ sudo apt autoremove -y # Remove dependencies
 
 For Fedora, RHEL, CentOS, and other RPM-based distributions:
 
-1. Download the `.rpm` package from the [latest release](https://github.com/Project516/NumberGuessingGame/releases)
+1. Download the `NumberGuessingGame.rpm` package from the [latest release](https://github.com/Project516/NumberGuessingGame/releases)
 
    You can use curl to do it from the command line:
    ```bash
-   curl -s -L -o numberguessinggame.rpm https://github.com/Project516/NumberGuessingGame/releases/latest/download/numberguessinggame.rpm
+   curl -s -L -o NumberGuessingGame.rpm https://github.com/Project516/NumberGuessingGame/releases/latest/download/NumberGuessingGame.rpm
    ```
 2. Install it:
    ```bash
-   sudo dnf install ./numberguessinggame.rpm
+   sudo dnf install ./NumberGuessingGame.rpm
    ```
    Or on older systems:
    ```bash
-   sudo yum install ./numberguessinggame.rpm
+   sudo yum install ./NumberGuessingGame.rpm
    ```
-3. Run from anywhere in your terminal:
+3. Run from anywhere in your terminal (launches GUI by default):
    ```bash
    numberguessinggame
+   ```
+
+   To run in console mode, use the `-c` flag:
+   ```bash
+   numberguessinggame -c
    ```
 
 To uninstall:
@@ -80,7 +90,7 @@ sudo yum remove numberguessinggame
 
 ### Standalone Packages with Bundled JRE (Recommended)
 
-Download the platform-specific package with bundled JRE from the [latest release](https://github.com/project516/numberguessinggame/releases):
+Download the platform-specific package with bundled JRE from the [latest release](https://github.com/Project516/NumberGuessingGame/releases):
 
 - **Windows**: `NumberGuessingGame-windows.zip`
 - **macOS**: `NumberGuessingGame-macos.zip`
@@ -96,7 +106,7 @@ Run `run.sh`
 
 ### Manual Installation (Requires Java)
 
-Download the `archive.zip` from the [latest release](https://github.com/project516/numberguessinggame/releases)
+Download the `archive.zip` from the [latest release](https://github.com/Project516/NumberGuessingGame/releases)
 
 #### Requirements
 
@@ -138,10 +148,9 @@ The game features both a graphical user interface (GUI) and a console mode.
 To run the classic console version, use the `--console` or `-c` flag:
 
 ```bash
-java -jar app.jar --console
-# or
-./run.sh --console  # Linux/Mac
-run.bat --console   # Windows
+java -jar app.jar --console  # or use -c
+./run.sh --console   # Linux/Mac, can also use -c
+run.bat --console    # Windows, can also use -c
 ```
 
 In console mode:
@@ -154,7 +163,7 @@ In console mode:
 
 ### High Scores
 
-The game automatically tracks high scores (games won with the least guesses). High scores are stored in your home directory at `~/.numberguessinggame/highscores.properties`.
+The game automatically tracks high scores (games won with the least guesses). High scores are stored in your home directory at `~/.NumberGuessingGame/highscores.properties`.
 
 - The top 10 scores are kept
 - Scores are sorted by the number of guesses (least is best)
@@ -202,14 +211,14 @@ This will create `archive.zip` containing the application, run scripts, README, 
 **On Linux:**
 Run `./package-deb.sh` from the project root.
 
-This will create `numberguessinggame.deb` which can be installed via `apt`/`dpkg` on Debian-based systems. The package can be released to GitHub Releases for easy distribution.
+This will create `NumberGuessingGame.deb` which can be installed via `apt`/`dpkg` on Debian-based systems. The package can be released to GitHub Releases for easy distribution.
 
 #### Fedora/RPM Package
 
 **On Linux (requires rpm-build):**
 Run `./package-rpm.sh` from the project root.
 
-This will create `numberguessinggame-1.0.0-1.noarch.rpm` which can be installed via `dnf`/`yum`/`rpm` on Fedora, RHEL, CentOS, and other RPM-based systems. The package can be released to GitHub Releases for easy distribution.
+This will create `NumberGuessingGame.rpm` which can be installed via `dnf`/`yum`/`rpm` on Fedora, RHEL, CentOS, and other RPM-based systems. The package can be released to GitHub Releases for easy distribution.
 
 #### Platform-Specific Packages with Bundled JRE
 

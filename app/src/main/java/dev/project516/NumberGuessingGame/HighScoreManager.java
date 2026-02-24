@@ -18,7 +18,7 @@ import java.util.Properties;
  * scores from persistent storage.
  */
 public class HighScoreManager {
-    private static final String CONFIG_DIR = ".numberguessinggame";
+    private static final String CONFIG_DIR = ".NumberGuessingGame";
     private static final String HIGH_SCORE_FILE = "highscores.properties";
     private static final int MAX_HIGH_SCORES = 10;
 
