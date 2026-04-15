@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 [versions]
-guava = "33.5.0-jre"
+guava = "33.6.0-jre"
 
 [libraries]
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
