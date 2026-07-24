@@ -199,12 +199,12 @@ From the project root:
 #### Zip Archive
 
 **On Windows:**
-Run `.\gradlew build` and `.\package.bat` from the project root.
+Run `.\gradlew build` and then `.\package-zip.bat` from the project root.
+This will create `archive.zip` containing the application, run scripts, README, and LICENSE.
 
 **On Linux/Mac:**
-Run `./package.sh` from the project root.
-
-This will create `archive.zip` containing the application, run scripts, README, and LICENSE.
+Run `./gradlew build` and then `./package-zip.sh` from the project root.
+This will create `NumberGuessingGame-archive.zip` containing the application, run scripts, README, and LICENSE.
 
 #### Debian Package
 
