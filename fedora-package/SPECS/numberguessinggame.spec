@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 Name:           numberguessinggame
-Version:        0.1.11
+Version:        0.1.12
 Release:        1%{?dist}
 Summary:        A simple number guessing game
 
@@ -50,5 +50,5 @@ chmod 755 %{buildroot}%{_bindir}/%{name}
 %{_datadir}/games/%{name}/game.jar
 
 %changelog
-* Tue Dec 03 2024 Project516 <138796702+Project516@users.noreply.github.com> - 1.0.0-1
-- Initial Fedora package release
+* Tue July 24 2026 Project516 <138796702+Project516@users.noreply.github.com> - 0.1.12-1
+- Dependency updates and typo fixes
