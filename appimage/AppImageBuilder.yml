@@ -1,0 +1,87 @@
+# SPDX-FileCopyrightText: 2026 Project516 <138796702+Project516@users.noreply.github.com>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+version: 1
+script:
+  - apt-get update
+  - apt-get install -y --no-install-recommends squashfs-tools
+  # Clear a stale AppDir from an earlier run so the build is reproducible.
+  # Guarded because an unset TARGET_APPDIR would make this expand to
+  # rm -rf "" and the recipe has no other protection against that.
+  - test -n "$TARGET_APPDIR" && rm -rf "$TARGET_APPDIR"
+  - REPOSITORY_ROOT="$(cd "$SOURCE_DIR/.." && pwd)"
+  - cd "$REPOSITORY_ROOT"
+  - mkdir -p "$TARGET_APPDIR/usr/lib/NumberGuessingGame"
+  - cp "$REPOSITORY_ROOT/app/build/libs/app-all.jar" "$TARGET_APPDIR/usr/lib/NumberGuessingGame/game.jar"
+  - mkdir -p "$TARGET_APPDIR/usr/share/applications"
+  - cp "$REPOSITORY_ROOT/appimage/dev.project516.NumberGuessingGame.desktop" "$TARGET_APPDIR/usr/share/applications/dev.project516.NumberGuessingGame.desktop"
+  - mkdir -p "$TARGET_APPDIR/usr/share/icons/hicolor/128x128/apps"
+  - cp "$REPOSITORY_ROOT/appimage/icon.png" "$TARGET_APPDIR/usr/share/icons/hicolor/128x128/apps/numberguessinggame.png"
+
+AppDir:
+  path: AppDir
+  app_info:
+    id: dev.project516.NumberGuessingGame
+    name: Number Guessing Game
+    icon: numberguessinggame
+    version: !ENV ${APP_VERSION}
+    # exec and exec_args are required by the recipe schema (v1_app_info), so
+    # they stay even though the after_runtime AppRun below is the real entry
+    # point. The path is the bundled JRE, and it resolves inside the mounted
+    # AppDir via ${APPDIR}.
+    exec: usr/lib/jvm/java-17-openjdk-amd64/bin/java
+    exec_args: '-jar ${APPDIR}/usr/lib/NumberGuessingGame/game.jar $@'
+  apt:
+    arch: amd64
+    sources:
+      - sourceline: deb [arch=amd64] https://archive.ubuntu.com/ubuntu/ noble main restricted universe multiverse
+        key_url: 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x871920D1991BC93C'
+    include:
+      - openjdk-17-jre-headless
+  files:
+    exclude:
+      - usr/share/man
+      - usr/share/doc/*
+  after_runtime:
+    - |
+      cat > "$TARGET_APPDIR/AppRun" <<'SCRIPT'
+      #!/bin/sh
+      set -eu
+      APPDIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+      JAVA_HOME="$APPDIR/usr/lib/jvm/java-17-openjdk-amd64"
+      JAR="$APPDIR/usr/lib/NumberGuessingGame/game.jar"
+      # Prefer the compat loader the builder deploys, but fall back to any
+      # glibc loader in the runtime tree so a builder version change that
+      # relocates it does not break the launcher.
+      LOADER=""
+      for candidate in \
+        "$APPDIR/runtime/compat/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2" \
+        "$APPDIR/runtime/compat/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2" \
+        "$APPDIR/usr/lib64/ld-linux-x86-64.so.2" \
+        "$APPDIR/lib64/ld-linux-x86-64.so.2"; do
+        if [ -x "$candidate" ]; then
+          LOADER="$candidate"
+          break
+        fi
+      done
+      if [ -z "$LOADER" ]; then
+        LOADER=$(find "$APPDIR/runtime" -name 'ld-linux-x86-64.so.2' -type f 2>/dev/null | head -n 1)
+      fi
+      if [ -z "$LOADER" ]; then
+        echo "AppRun: no ld-linux-x86-64.so.2 found under $APPDIR/runtime" >&2
+        exit 1
+      fi
+      if [ ! -x "$JAVA_HOME/bin/java" ]; then
+        echo "AppRun: bundled java missing at $JAVA_HOME/bin/java" >&2
+        exit 1
+      fi
+      exec "$LOADER" "$JAVA_HOME/bin/java" -jar "$JAR" "$@"
+      SCRIPT
+    - chmod 755 "$TARGET_APPDIR/AppRun"
+
+AppImage:
+  file_name: !ENV 'NumberGuessingGame-${APP_VERSION}-x86_64.AppImage'
+  arch: x86_64
+  update-information: !ENV ${UPDATE_INFO}
+  sign-key: None

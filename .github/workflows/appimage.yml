@@ -1,0 +1,94 @@
+# SPDX-FileCopyrightText: 2026 Project516 <138796702+Project516@users.noreply.github.com>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+name: Build AppImage
+
+on:
+  release:
+    # published fires for a draft that is later published, created does not.
+    types: [published]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: appimage-${{ github.event.release.tag_name }}
+  cancel-in-progress: false
+
+jobs:
+  build-appimage:
+    # Pinned to match the noble apt sources in the recipe. ubuntu-latest
+    # would float and could pair a newer runner with noble packages.
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Java
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Build Java application
+        run: ./gradlew build
+
+      - name: Derive version from the release tag
+        id: version
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: echo "value=${TAG#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Build AppImage
+        uses: AppImageCrafters/build-appimage@57c3bc6963f870ce3be103117de5b5e33ffbaeb6 # v1.3
+        env:
+          # Repo tags carry no v prefix, but strip one so a future v1.2.3 tag
+          # does not leak into the AppImage filename and desktop version.
+          APP_VERSION: ${{ steps.version.outputs.value }}
+          UPDATE_INFO: gh-releases-zsync|Project516|NumberGuessingGame|latest|NumberGuessingGame-*-x86_64.AppImage.zsync
+        with:
+          recipe: appimage/AppImageBuilder.yml
+
+      - name: Locate and make the AppImage executable
+        run: |
+          shopt -s nullglob
+          appimages=(NumberGuessingGame-*-x86_64.AppImage)
+          if [ ${#appimages[@]} -eq 0 ]; then
+            echo "No AppImage found in $PWD" >&2
+            ls -la >&2
+            exit 1
+          fi
+          sudo chmod 755 "${appimages[@]}"
+
+      - name: Upload AppImage artifact
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: NumberGuessingGame.AppImage
+          path: NumberGuessingGame-*-x86_64.AppImage*
+          if-no-files-found: error
+
+  upload-release-assets:
+    runs-on: ubuntu-24.04
+    needs: build-appimage
+    permissions:
+      contents: write
+    steps:
+      - name: Download AppImage artifact
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: NumberGuessingGame.AppImage
+          path: release-assets
+
+      - name: Attach AppImage and zsync to GitHub Release
+        uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
+        with:
+          tag_name: ${{ github.event.release.tag_name }}
+          files: |
+            release-assets/NumberGuessingGame-*.AppImage
+            release-assets/NumberGuessingGame-*.AppImage.zsync
+          fail_on_unmatched_files: true
