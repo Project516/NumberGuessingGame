@@ -1,0 +1,39 @@
+version: 1
+AppDir:
+  path: AppDir
+  app_info:
+    id: dev.project516.NumberGuessingGame
+    name: Number Guessing Game
+    icon: numberguessinggame
+    version: latest
+    exec: usr/bin/java
+    exec_args: '-jar /usr/lib/NumberGuessingGame/game.jar $@'
+  apt:
+    arch: amd64
+    sources:
+    - sourceline: deb http://archive.ubuntu.com/ubuntu/ noble main restricted universe multiverse
+      key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x8B48ADAF5E908646439E7EE553A0C4E2'
+    include:
+    - openjdk-17-jre-headless
+  files:
+    exclude:
+    - usr/share/man
+    - usr/share/doc/*
+  script:
+  - apt-get update
+  - apt-get install -y openjdk-17-jdk-headless
+  - cd "$SOURCE_DIR"
+  - ./gradlew build
+  - mkdir -p "$TARGET_APPDIR/usr/lib/NumberGuessingGame"
+  - cp "$SOURCE_DIR/app/build/libs/app-all.jar" "$TARGET_APPDIR/usr/lib/NumberGuessingGame/game.jar"
+  - mkdir -p "$TARGET_APPDIR/usr/bin"
+  - cp "$SOURCE_DIR/appimage/AppRun" "$TARGET_APPDIR/usr/bin/AppRun"
+  - chmod 755 "$TARGET_APPDIR/usr/bin/AppRun"
+  - mkdir -p "$TARGET_APPDIR/usr/share/applications"
+  - cp "$SOURCE_DIR/appimage/NumberGuessingGame.desktop" "$TARGET_APPDIR/usr/share/applications/NumberGuessingGame.desktop"
+  - mkdir -p "$TARGET_APPDIR/usr/share/icons/hicolor/128x128/apps"
+  - cp "$SOURCE_DIR/appimage/icon.png" "$TARGET_APPDIR/usr/share/icons/hicolor/128x128/apps/numberguessinggame.png"
+AppImage:
+  arch: x86_64
+  update-information: !ENV ${UPDATE_INFO}
+  sign-key: None
