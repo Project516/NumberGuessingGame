@@ -6,10 +6,15 @@ name: Build AppImage
 
 on:
   release:
-    types: [created]
+    # published fires for a draft that is later published, created does not.
+    types: [published]
 
 permissions:
   contents: read
+
+concurrency:
+  group: appimage-${{ github.event.release.tag_name }}
+  cancel-in-progress: false
 
 jobs:
   build-appimage:
@@ -31,16 +36,32 @@ jobs:
       - name: Build Java application
         run: ./gradlew build
 
+      - name: Derive version from the release tag
+        id: version
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: echo "value=${TAG#v}" >> "$GITHUB_OUTPUT"
+
       - name: Build AppImage
         uses: AppImageCrafters/build-appimage@57c3bc6963f870ce3be103117de5b5e33ffbaeb6 # v1.3
         env:
-          APP_VERSION: ${{ github.event.release.tag_name }}
+          # Repo tags carry no v prefix, but strip one so a future v1.2.3 tag
+          # does not leak into the AppImage filename and desktop version.
+          APP_VERSION: ${{ steps.version.outputs.value }}
           UPDATE_INFO: gh-releases-zsync|Project516|NumberGuessingGame|latest|NumberGuessingGame-*-x86_64.AppImage.zsync
         with:
           recipe: appimage/AppImageBuilder.yml
 
-      - name: Make AppImage executable
-        run: sudo chmod 755 NumberGuessingGame-*-x86_64.AppImage
+      - name: Locate and make the AppImage executable
+        run: |
+          shopt -s nullglob
+          appimages=(NumberGuessingGame-*-x86_64.AppImage)
+          if [ ${#appimages[@]} -eq 0 ]; then
+            echo "No AppImage found in $PWD" >&2
+            ls -la >&2
+            exit 1
+          fi
+          sudo chmod 755 "${appimages[@]}"
 
       - name: Upload AppImage artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1

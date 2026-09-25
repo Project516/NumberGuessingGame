@@ -24,6 +24,9 @@ AppDir:
     name: Number Guessing Game
     icon: numberguessinggame
     version: !ENV ${APP_VERSION}
+    # exec and exec_args are required by the recipe schema (v1_app_info), so
+    # they stay even though the after_runtime AppRun below is the real entry
+    # point. They still resolve inside the mounted AppDir via ${APPDIR}.
     exec: usr/bin/java
     exec_args: '-jar ${APPDIR}/usr/lib/NumberGuessingGame/game.jar $@'
   apt:
@@ -44,8 +47,33 @@ AppDir:
       set -eu
       APPDIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
       JAVA_HOME="$APPDIR/usr/lib/jvm/java-17-openjdk-amd64"
-      LOADER="$APPDIR/runtime/compat/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
-      exec "$LOADER" "$JAVA_HOME/bin/java" -jar "$APPDIR/usr/lib/NumberGuessingGame/game.jar" "$@"
+      JAR="$APPDIR/usr/lib/NumberGuessingGame/game.jar"
+      # Prefer the compat loader the builder deploys, but fall back to any
+      # glibc loader in the runtime tree so a builder version change that
+      # relocates it does not break the launcher.
+      LOADER=""
+      for candidate in \
+        "$APPDIR/runtime/compat/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2" \
+        "$APPDIR/runtime/compat/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2" \
+        "$APPDIR/usr/lib64/ld-linux-x86-64.so.2" \
+        "$APPDIR/lib64/ld-linux-x86-64.so.2"; do
+        if [ -x "$candidate" ]; then
+          LOADER="$candidate"
+          break
+        fi
+      done
+      if [ -z "$LOADER" ]; then
+        LOADER=$(find "$APPDIR/runtime" -name 'ld-linux-x86-64.so.2' -type f 2>/dev/null | head -n 1)
+      fi
+      if [ -z "$LOADER" ]; then
+        echo "AppRun: no ld-linux-x86-64.so.2 found under $APPDIR/runtime" >&2
+        exit 1
+      fi
+      if [ ! -x "$JAVA_HOME/bin/java" ]; then
+        echo "AppRun: bundled java missing at $JAVA_HOME/bin/java" >&2
+        exit 1
+      fi
+      exec "$LOADER" "$JAVA_HOME/bin/java" -jar "$JAR" "$@"
       SCRIPT
     - chmod 755 "$TARGET_APPDIR/AppRun"
 
