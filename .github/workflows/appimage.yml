@@ -20,7 +20,7 @@ jobs:
   build-appimage:
     # Pinned to match the noble apt sources in the recipe. ubuntu-latest
     # would float and could pair a newer runner with noble packages.
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     permissions:
       contents: read
     steps:
@@ -73,7 +73,7 @@ jobs:
           if-no-files-found: error
 
   upload-release-assets:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs: build-appimage
     permissions:
       contents: write
