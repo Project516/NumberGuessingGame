@@ -18,7 +18,9 @@ concurrency:
 
 jobs:
   build-appimage:
-    runs-on: ubuntu-latest
+    # Pinned to match the noble apt sources in the recipe. ubuntu-latest
+    # would float and could pair a newer runner with noble packages.
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
     steps:
@@ -71,7 +73,7 @@ jobs:
           if-no-files-found: error
 
   upload-release-assets:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: build-appimage
     permissions:
       contents: write

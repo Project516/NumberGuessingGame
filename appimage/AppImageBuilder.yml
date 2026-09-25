@@ -6,12 +6,14 @@ version: 1
 script:
   - apt-get update
   - apt-get install -y --no-install-recommends squashfs-tools
-  - rm -rf "$TARGET_APPDIR"
+  # Clear a stale AppDir from an earlier run so the build is reproducible.
+  # Guarded because an unset TARGET_APPDIR would make this expand to
+  # rm -rf "" and the recipe has no other protection against that.
+  - test -n "$TARGET_APPDIR" && rm -rf "$TARGET_APPDIR"
   - REPOSITORY_ROOT="$(cd "$SOURCE_DIR/.." && pwd)"
   - cd "$REPOSITORY_ROOT"
-  - mkdir -p "$TARGET_APPDIR/usr/bin" "$TARGET_APPDIR/usr/lib/NumberGuessingGame"
+  - mkdir -p "$TARGET_APPDIR/usr/lib/NumberGuessingGame"
   - cp "$REPOSITORY_ROOT/app/build/libs/app-all.jar" "$TARGET_APPDIR/usr/lib/NumberGuessingGame/game.jar"
-  - ln -s ../lib/jvm/java-17-openjdk-amd64/bin/java "$TARGET_APPDIR/usr/bin/java"
   - mkdir -p "$TARGET_APPDIR/usr/share/applications"
   - cp "$REPOSITORY_ROOT/appimage/dev.project516.NumberGuessingGame.desktop" "$TARGET_APPDIR/usr/share/applications/dev.project516.NumberGuessingGame.desktop"
   - mkdir -p "$TARGET_APPDIR/usr/share/icons/hicolor/128x128/apps"
@@ -26,8 +28,9 @@ AppDir:
     version: !ENV ${APP_VERSION}
     # exec and exec_args are required by the recipe schema (v1_app_info), so
     # they stay even though the after_runtime AppRun below is the real entry
-    # point. They still resolve inside the mounted AppDir via ${APPDIR}.
-    exec: usr/bin/java
+    # point. The path is the bundled JRE, and it resolves inside the mounted
+    # AppDir via ${APPDIR}.
+    exec: usr/lib/jvm/java-17-openjdk-amd64/bin/java
     exec_args: '-jar ${APPDIR}/usr/lib/NumberGuessingGame/game.jar $@'
   apt:
     arch: amd64
