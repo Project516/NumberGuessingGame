@@ -1,39 +1,56 @@
+# SPDX-FileCopyrightText: 2026 Project516 <138796702+Project516@users.noreply.github.com>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 version: 1
+script:
+  - apt-get update
+  - apt-get install -y --no-install-recommends squashfs-tools
+  - rm -rf "$TARGET_APPDIR"
+  - REPOSITORY_ROOT="$(cd "$SOURCE_DIR/.." && pwd)"
+  - cd "$REPOSITORY_ROOT"
+  - mkdir -p "$TARGET_APPDIR/usr/bin" "$TARGET_APPDIR/usr/lib/NumberGuessingGame"
+  - cp "$REPOSITORY_ROOT/app/build/libs/app-all.jar" "$TARGET_APPDIR/usr/lib/NumberGuessingGame/game.jar"
+  - ln -s ../lib/jvm/java-17-openjdk-amd64/bin/java "$TARGET_APPDIR/usr/bin/java"
+  - mkdir -p "$TARGET_APPDIR/usr/share/applications"
+  - cp "$REPOSITORY_ROOT/appimage/dev.project516.NumberGuessingGame.desktop" "$TARGET_APPDIR/usr/share/applications/dev.project516.NumberGuessingGame.desktop"
+  - mkdir -p "$TARGET_APPDIR/usr/share/icons/hicolor/128x128/apps"
+  - cp "$REPOSITORY_ROOT/appimage/icon.png" "$TARGET_APPDIR/usr/share/icons/hicolor/128x128/apps/numberguessinggame.png"
+
 AppDir:
   path: AppDir
   app_info:
     id: dev.project516.NumberGuessingGame
     name: Number Guessing Game
     icon: numberguessinggame
-    version: latest
+    version: !ENV ${APP_VERSION}
     exec: usr/bin/java
-    exec_args: '-jar /usr/lib/NumberGuessingGame/game.jar $@'
+    exec_args: '-jar ${APPDIR}/usr/lib/NumberGuessingGame/game.jar $@'
   apt:
     arch: amd64
     sources:
-    - sourceline: deb http://archive.ubuntu.com/ubuntu/ noble main restricted universe multiverse
-      key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x8B48ADAF5E908646439E7EE553A0C4E2'
+      - sourceline: deb [arch=amd64] https://archive.ubuntu.com/ubuntu/ noble main restricted universe multiverse
+        key_url: 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x871920D1991BC93C'
     include:
-    - openjdk-17-jre-headless
+      - openjdk-17-jre-headless
   files:
     exclude:
-    - usr/share/man
-    - usr/share/doc/*
-  script:
-  - apt-get update
-  - apt-get install -y openjdk-17-jdk-headless
-  - cd "$SOURCE_DIR"
-  - ./gradlew build
-  - mkdir -p "$TARGET_APPDIR/usr/lib/NumberGuessingGame"
-  - cp "$SOURCE_DIR/app/build/libs/app-all.jar" "$TARGET_APPDIR/usr/lib/NumberGuessingGame/game.jar"
-  - mkdir -p "$TARGET_APPDIR/usr/bin"
-  - cp "$SOURCE_DIR/appimage/AppRun" "$TARGET_APPDIR/usr/bin/AppRun"
-  - chmod 755 "$TARGET_APPDIR/usr/bin/AppRun"
-  - mkdir -p "$TARGET_APPDIR/usr/share/applications"
-  - cp "$SOURCE_DIR/appimage/NumberGuessingGame.desktop" "$TARGET_APPDIR/usr/share/applications/NumberGuessingGame.desktop"
-  - mkdir -p "$TARGET_APPDIR/usr/share/icons/hicolor/128x128/apps"
-  - cp "$SOURCE_DIR/appimage/icon.png" "$TARGET_APPDIR/usr/share/icons/hicolor/128x128/apps/numberguessinggame.png"
+      - usr/share/man
+      - usr/share/doc/*
+  after_runtime:
+    - |
+      cat > "$TARGET_APPDIR/AppRun" <<'SCRIPT'
+      #!/bin/sh
+      set -eu
+      APPDIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+      JAVA_HOME="$APPDIR/usr/lib/jvm/java-17-openjdk-amd64"
+      LOADER="$APPDIR/runtime/compat/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+      exec "$LOADER" "$JAVA_HOME/bin/java" -jar "$APPDIR/usr/lib/NumberGuessingGame/game.jar" "$@"
+      SCRIPT
+    - chmod 755 "$TARGET_APPDIR/AppRun"
+
 AppImage:
+  file_name: !ENV 'NumberGuessingGame-${APP_VERSION}-x86_64.AppImage'
   arch: x86_64
   update-information: !ENV ${UPDATE_INFO}
   sign-key: None
