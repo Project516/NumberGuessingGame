@@ -37,6 +37,8 @@ AppDir:
     sources:
       - sourceline: deb [arch=amd64] https://archive.ubuntu.com/ubuntu/ noble main restricted universe multiverse
         key_url: 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x871920D1991BC93C'
+      - sourceline: deb [arch=amd64] https://archive.ubuntu.com/ubuntu/ noble-updates main restricted universe multiverse
+      - sourceline: deb [arch=amd64] https://security.ubuntu.com/ubuntu/ noble-security main restricted universe multiverse
     include:
       - openjdk-17-jre-headless
   files:
